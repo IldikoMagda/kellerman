@@ -1,0 +1,1 @@
+Templates will be here for each section of our app
