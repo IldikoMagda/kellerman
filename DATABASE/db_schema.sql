@@ -7,13 +7,10 @@ CREATE TABLE Kinase (
     family VARCHAR(255) NOT NULL,
     protein_group VARCHAR(255) NOT NULL,
     phosphosite_location INT,
-    inhibitor VARCHAR(255) NOT NULL,
     protein_image VARCHAR(255) NOT NULL,
-    PRIMARY KEY (kinase_name),
-    FOREIGN KEY (inhibitor) REFERENCES Inhibtor(inhibitor_name),
-    FOREIGN KEY (phosphosite_location) REFERENCES Phosphosite(phosphosite_location)
+    PRIMARY KEY (kinase_name)
 );
-
+    
 CREATE TABLE Inhibitor (
     inhibitor_name VARCHAR(255) NOT NULL,
     chemical_structure VARCHAR(255) NOT NULL, 
@@ -27,5 +24,16 @@ CREATE TABLE Phosphosite (
     phosphosite_location INT,
     kinase_name VARCHAR(255) NOT NULL,
     neighbouring_seq VARCHAR(500) NOT NULL,
-    PRIMARY KEY (phosphosite_location)
+    PRIMARY KEY (phosphosite_location),
+    FOREIGN KEY (kinase_name) REFERENCES Kinase(kinase_name)
 );
+
+CREATE TABLE Kinase_Inhibitor_Relation (
+    inhibitor VARCHAR(255) NOT NULL,
+    kinase VARCHAR(255) NOT NULL,
+    FOERIGN KEY (inhibitor) REFERENCES Inhibitor(inhibitor_name)
+    FOERIGN KEY (kinase) REFERENCES Kinase(kinase_name)
+);
+    
+    
+
