@@ -31,7 +31,7 @@ CREATE TABLE Phosphosite (
 CREATE TABLE Kinase_Inhibitor_Relation (
     inhibitor VARCHAR(255) NOT NULL,
     kinase VARCHAR(255) NOT NULL,
-    FOERIGN KEY (inhibitor) REFERENCES Inhibitor(inhibitor_name)
+    FOERIGN KEY (inhibitor) REFERENCES Inhibitor(inhibitor_name),
     FOERIGN KEY (kinase) REFERENCES Kinase(kinase_name)
 );
     
