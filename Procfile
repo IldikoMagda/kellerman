@@ -1,1 +1,1 @@
-web: python kellerman-1/run.py
+web: python /run.py
