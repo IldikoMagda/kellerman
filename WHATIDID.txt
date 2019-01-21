@@ -79,3 +79,12 @@ Within VIEWS.PY:
 	- Upload result 
 
 
+
+
+SET GIT repository on local computer and learned basic git commands 
+	$ git init      # in the folder that will be monitored 
+	
+	## see more in mostimportantcommandsforgit.txt 
+ADD FILES to local git repository 
+
+
