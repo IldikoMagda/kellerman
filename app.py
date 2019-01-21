@@ -3,8 +3,6 @@ from models.kinase.views import kinase_blueprint
 from models.inhibitor.views import inhibitor_blueprint
 from models.analysis.views import analysis_blueprint
 
-
-
 app = Flask(__name__)
 app.config.from_object('config')
 

@@ -3,12 +3,7 @@ import sys
 import common.database as db
 import json
 
-
-__author__ = 'Ildiko'
-
-kinase_blueprint = Blueprint('kinase', __name__)
-
-
+kinase_blueprint= Blueprint('kinase', __name__)
 @kinase_blueprint.route('/', methods=['GET', 'POST'])
 def index():
     query = 'SELECT kinase_id, kinase_name, family, inhibitor FROM kinase'
@@ -20,4 +15,5 @@ def index():
             query = query + " WHERE kinase_name LIKE '%" + nameFilter + "%'"
             print('Query: ' + query)
         data = db.Query(query)
-return render_template('kinase/index.html', data=data, content_type='application/json')
+    return render_template('kinase/index.html', data=data, content_type='application/json')
+
