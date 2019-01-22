@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import psycopg2
 import sys
 import os
 
+=======
+import os
+import psycopg2
+>>>>>>> f5809a5f98e4871d30f3dfbc6fbd3684ac838f37
 
 def GetKinases():
 
@@ -42,4 +47,8 @@ def Query(query):
         #     print("Family  = ", row[2], "\n")
         return result
     except:
+<<<<<<< HEAD
         return 'An error occured while executing SQL query'
+=======
+        return 'An error occured while executing SQL query'
+>>>>>>> f5809a5f98e4871d30f3dfbc6fbd3684ac838f37
