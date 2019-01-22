@@ -1,7 +1,5 @@
-import psycopg2
-import sys
 import os
-
+import psycopg2
 
 def GetKinases():
 
