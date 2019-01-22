@@ -1,9 +1,9 @@
+""" This File is used to run the app deployed or locally"""
 import os
+from app import APP
 
-from app import app
-
-port = int(os.environ.get('PORT', 33506))
+PORT = int(os.environ.get('PORT', 33506))
 # to run local
-#app.run(debug=app.config['DEBUG'], use_reloader=app.config['RELOADER'], port=port)
+#APP.run(debug=APP.config['DEBUG'], use_reloader=APP.config['RELOADER'])
 # run deployed
-app.run(debug=app.config['DEBUG'], use_reloader=app.config['RELOADER'], port=port, host='0.0.0.0')
+APP.run(debug=APP.config['DEBUG'], use_reloader=APP.config['RELOADER'], PORT=PORT, host='0.0.0.0')
