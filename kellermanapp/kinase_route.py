@@ -1,4 +1,4 @@
-# define a route called 'protein' which accepts a protein name parameter
+# define a route called 'kinase' which accepts a kinase name parameter
 @app.route('/kinases/<kinase_name>')
 def kinases(kinase_name):
    # load kinase data from TSV file into pandas dataframe with kinase name as index
@@ -10,7 +10,7 @@ def kinases(kinase_name):
 		return render_template('kinase_view.html', name=kinase_name, gene_name=row.gene_name, \
         subcelullar_location=row.subcelullar_location, image=row.Image_URL)
 	except:
-		# if protein is not found a key error is thrown and we end up here
+		# if kinase is not found a key error is thrown and we end up here
 		return "Sorry! We can't find any information about a kinase called %s." % kinase_name
 
 	
