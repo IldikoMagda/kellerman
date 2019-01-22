@@ -2,8 +2,8 @@
 import os
 from app import APP
 
-PORT = int(os.environ.get('PORT', 33506))
+port = int(os.environ.get('PORT', 33506))
 # to run local
 #APP.run(debug=APP.config['DEBUG'], use_reloader=APP.config['RELOADER'])
 # run deployed
-APP.run(debug=APP.config['DEBUG'], use_reloader=APP.config['RELOADER'], PORT=PORT, host='0.0.0.0')
+APP.run(debug=APP.config['DEBUG'], use_reloader=APP.config['RELOADER'], port=port, host='0.0.0.0')
