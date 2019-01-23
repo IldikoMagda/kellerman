@@ -36,7 +36,7 @@ def kinases(kinase_name):
 	try: # try to extract row for specified kinase
 		row = df.loc[kinase_name]
 		# if kinase is found, return some information about it
-		return render_template('kinas.index.html', name=kinase_name, gene_name=row.gene_name, \
+		return render_template('kinase.index.html', name=kinase_name, gene_name=row.gene_name, \
         subcelullar_location=row.subcelullar_location, image=row.Image_URL)
 	except:
 		# if kinase is not found a key error is thrown and we end up here
