@@ -4,6 +4,77 @@
 
 {% block content %}
 
-<h1>Introduction page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #4D6363;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #F74366;
+  color: black;
+}
+
+/* Style the content */
+.content {
+  background-color: #F4E4B7;
+  padding: 10px;
+  height: 200px; /* Should be removed. Only for demonstration */
+}
+
+/* Style the footer */
+.footer {
+  background-color: #F4E4B7;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+</div>
+
+<div class="content">
+  <h2>Welcome to the Kellerman Kinase Database. </h2>
+  <p>This database allows you to search for specific kinases and will return information such as their gene sybol, location in the cel.....</p>
+</div>
+
+<div class="footer">
+  <p>Created by Kellerman Group as part of Queen Mary Univeristy London</p>
+</div>
+
+</body>
+</html>
 
 {% endblock %}
