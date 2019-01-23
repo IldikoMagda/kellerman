@@ -41,6 +41,11 @@ def kinases(kinase_name):
 	except:
 		# if kinase is not found a key error is thrown and we end up here
 		return "Sorry! We can't find any information about a kinase called %s." % kinase_name
+	
+	
+# start the wb server
+if __name__ == '__main__':
+	app.run(debug=True)
 
 
 	
