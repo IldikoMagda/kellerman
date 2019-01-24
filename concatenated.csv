@@ -1,0 +1,2 @@
+Gene_Target,Kinase,Ensembl_ID,Gene_Start,Gene_End,Chromosome/Scaffold,Protein_position,Residue
+AAK1,ULK1,ENSG00000115977,69457997,69674349,2,368,THR/nLIMK2,ROCK1,ENSG00000182541,31212239,31280080,22,505,THR/n
