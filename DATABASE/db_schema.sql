@@ -12,11 +12,12 @@ CREATE TABLE Kinase (
 );
     
 CREATE TABLE Inhibitor (
+    CNumber VARCHAR(255) NOT NULL,
     inhibitor_name VARCHAR(255) NOT NULL,
     chemical_structure VARCHAR(255) NOT NULL, 
-    kinase_name VARCHAR(255) NOT NULL,
-    class VARCHAR(255) NOT NULL,
-    PRIMARY KEY (inhibitor_name)
+    molecular_weight VARCHAR(255) NOT NULL,
+    SMILES VARCHAR(255) NOT NULL,
+    PRIMARY KEY (CNumber)
 );
 
 CREATE TABLE Phosphosite (
@@ -29,9 +30,11 @@ CREATE TABLE Phosphosite (
 );
 
 CREATE TABLE Kinase_Inhibitor_Relation (
-    inhibitor VARCHAR(255) NOT NULL,
+    CNumber VARCHAR(255) NOT NULL,
     kinase VARCHAR(255) NOT NULL,
-    FOERIGN KEY (inhibitor) REFERENCES Inhibitor(inhibitor_name),
+    inhibition VARCHAR(255) NOT NULL,
+    screen_concentration VARCHAR(255) NOT NULL,
+    FOERIGN KEY (inhibitor) REFERENCES Inhibitor(CNumber),
     FOERIGN KEY (kinase) REFERENCES Kinase(kinase_name)
 );
     
