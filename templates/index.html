@@ -7,10 +7,15 @@
 <title>Home</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+<head>
+
 <style>
 * {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  
 }
 
 body {
@@ -21,7 +26,7 @@ body {
 /* Style the top navigation bar */
 .topnav {
   overflow: hidden;
-  background-color: #4D6363;
+  background-color: #0d1a1f;
 }
 
 /* Style the topnav links */
@@ -36,40 +41,51 @@ body {
 
 /* Change color on hover */
 .topnav a:hover {
-  background-color: #F74366;
-  color: black;
+  background-color: #24434F;
+  color: #f2f2f2;
+  text-decoration: underline;
+ 
+}
+.active {
+  background-color:  #24434F;
 }
 
 /* Style the content */
 .content {
-  background-color: #F4E4B7;
+  background-color: #24434F; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom right, #24434F, #319FAD); /* Standard syntax (must be last) */
   padding: 10px;
   height: 200px; /* Should be removed. Only for demonstration */
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: left;
 }
 
 /* Style the footer */
 .footer {
-  background-color: #F4E4B7;
-  padding: 10px;
-}
+  padding: 5px;
+  font-size: 12px;
+  
+
 </style>
 </head>
 <body>
 
 <div class="topnav">
-  <a href="https://kellerman-db.herokuapp.com/">Home</a>
+  <a class="active" href="https://kellerman-db.herokuapp.com/">Home</a>
   <a href="{{ url_for('kinase.index') }}">Kinase</a>
   <a href="{{url_for('inhibitor.index') }}">Inhibitors</a>
   <a href="{{url_for('analysis.index') }}">Analysis</a>
 </div>
 
 <div class="content">
-  <h2>Welcome to the Kellerman Kinase Database. </h2>
-  <p>This database allows you to search for specific kinases and will return information such as their gene sybol, location in the cel.....</p>
+  <h2 style="color:white;">Welcome to the Kellerman Kinase Database. </h2>
+  <p style="color:white;">This database allows you to search specific kinases returning information such as their gene symbol, cellular location, group, family, phopshites and known inhibitors. To search for your specific kinase, please use the search bar in the Kinase page. 
+  Alternatively, we are able to provide the relative activity of your results in the Analaysis page. Please upload your CSV file using the upload bar.</p>
 </div>
 
 <div class="footer">
-  <p>Created by Kellerman Group as part of Queen Mary Univeristy London</p>
+  <p style="colour:grey;">Created by Kellerman Group as part of Queen Mary Univeristy London</p>
 </div>
 
 </body>
