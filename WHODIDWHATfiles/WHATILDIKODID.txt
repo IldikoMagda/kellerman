@@ -1,5 +1,3 @@
-
-
 set virtual environment under  ~/.pyenv/versions/2.7.15/envs/GroupProject-env
 	#activattion should be automatatic on local machine by pyenv-virtualenv 
 	# if not:
@@ -46,37 +44,53 @@ set directory tree for the app including:
 run.py
 requirements.txt
 config.py
-INSTANCE
-	config.py
-KELLERMANAPP
+app.py
+__init__.py
+
+MODELS:
+	__init__.py 
+	kinase
+		views.py
+		__init__.py
+
+	inhibitor
+		view.py
+		__init__.py
+	analysis
+		views.py
+		__init.py
+
+TEMPLATES:
 	__init__.py
-	model.py
-	views.py
-	TEMPLATES
-	STATIC
+	index.html
+	menu.html 
+	
+	kinase
+		index.html
+
+	inhibitor
+		index.html
+
+	analysis 
+		index.html
+
+
+
+STATIC:
+for static elements of the app
+
+
+COMMON:
+	__init__.py
+	database.py # to access db on heroku
+
 
 	
 Within CONFIG.PY:
-###	If you’re using Flask-Bcrypt to hash user passwords,
-###	you’ll need to specify the number of “rounds” that the algorithm
-###	executes in hashing a password. The more rounds used to hash a password,
-###	the longer it’ll take for an attacker to guess a password given the
-###	hash. The number of rounds should increase over time as computing powe
-###	r increases.
+basic set up of flask 
+including how to run the app 
 
 
-
-Within VIEWS.PY:
-
-# This page is to set views of the future site 
-# define all routes and their functions 
-
-# so far: 
-	- Home Page
-	- Kinase search
-	- Kinase result 
-	- Upload 
-	- Upload result 
 
 
 
@@ -86,5 +100,38 @@ SET GIT repository on local computer and learned basic git commands
 	
 	## see more in mostimportantcommandsforgit.txt 
 ADD FILES to local git repository 
+
+
+Setting up the environment:
+
+
+	-install postgreSQL globally on local computer 
+	
+	#switch to the account 
+	$ sudo -i -u postgres 
+	# access a Postgres prompt immediately by typing
+	$ psql 
+
+	#exit by
+	$ \q 
+
+
+	- instaledl Heroku postgres
+	 
+
+
+Created a Heroku account and Project to deploy the app and database 
+
+
+
+
+Installed PgAdmin 
+	visual interface to handle database 
+
+
+Connected to the heroku server database via PGAdmin3
+
+
+Created Tables and Inserted Some Random values to creat the most basic database ever created
 
 
