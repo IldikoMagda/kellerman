@@ -1,4 +1,4 @@
-
+{% extends menu.html %}
 {% block content %}
 
 <!DOCTYPE html>
@@ -11,64 +11,6 @@
 <html>
 <head>
 
-<style>
-* {
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-  
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Style the top navigation bar */
-.topnav {
-  overflow: hidden;
-  background-color: #0d1a1f;
-}
-
-/* Style the topnav links */
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change color on hover */
-.topnav a:hover {
-  background-color: #24434F;
-  color: #f2f2f2;
-  text-decoration: underline;
- 
-}
-.active {
-  background-color:  #24434F;
-}
-
-/* Style the content */
-.content {
-  background-color: #24434F; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to bottom right, #24434F, #319FAD); /* Standard syntax (must be last) */
-  padding: 10px;
-  height: 200px; /* Should be removed. Only for demonstration */
-  padding-left: 50px;
-  padding-right: 50px;
-  text-align: left;
-}
-
-/* Style the footer */
-.footer {
-  padding: 5px;
-  font-size: 12px;
-  
-
-</style>
-</head>
 <body>
 
 <div class="topnav">
@@ -82,10 +24,6 @@ body {
   <h2 style="color:white;">Welcome to the Kellerman Kinase Database. </h2>
   <p style="color:white;">This database allows you to search specific kinases returning information such as their gene symbol, cellular location, group, family, phopshites and known inhibitors. To search for your specific kinase, please use the search bar in the Kinase page. 
   Alternatively, we are able to provide the relative activity of your results in the Analaysis page. Please upload your CSV file using the upload bar.</p>
-</div>
-
-<div class="footer">
-  <p style="colour:grey;">Created by Kellerman Group as part of Queen Mary Univeristy London</p>
 </div>
 
 </body>
