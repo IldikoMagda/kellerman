@@ -64,7 +64,7 @@ body {
 </head>
 <body>
         <div class="topnav">
-  <a href="https://kellerman-db.herokuapp.com/">Home</a>
+  <a href="{{ url_for('index') }}">Home</a>
   <a href="{{ url_for('kinase.index') }}">Kinase</a>
   <a href="{{url_for('inhibitor.index') }}">Inhibitors</a>
   <a href="{{url_for('analysis.index') }}">Analysis</a>
