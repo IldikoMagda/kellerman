@@ -11,7 +11,7 @@ APP = Flask(__name__)
 APP.config.from_object('config')
 
 @APP.route("/")
-def home():
+def index():
 
     """ Description: Home Route that renders the index template        """
     return render_template('index.html')
