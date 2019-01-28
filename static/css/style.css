@@ -38,6 +38,7 @@ body {
 .content {
   background-color: #24434F; /* For browsers that do not support gradients */
   background-image: linear-gradient(to bottom right, #24434F, #319FAD); /* Standard syntax (must be last) */
+  height: 100%;
   padding: 10px;
   padding-left: 50px;
   padding-right: 50px;
