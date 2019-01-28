@@ -6,9 +6,13 @@ from flask import Flask, render_template
 from models.kinase.views import kinase_blueprint
 from models.inhibitor.views import inhibitor_blueprint
 from models.analysis.views import analysis_blueprint
+from flask import SQLAlchemy
 
 APP = Flask(__name__)
-APP.config.from_object('config')
+
+app.config.from_object(os.environ['APP_SETTINGS'])
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 @APP.route("/")
 def index():
