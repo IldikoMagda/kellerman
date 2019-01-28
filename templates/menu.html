@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <html lang="en">
 <meta charset="utf-8">
@@ -11,7 +12,5 @@
 <a href="{{ url_for('analysis.index') }}">Analysis</a>
 </div>
 
-
-{% block content %}
- 
-{% endblock %}
+{% block content %}{% endblock %}
+</div>
