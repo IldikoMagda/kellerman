@@ -11,5 +11,5 @@ def index():
         kinase_name= request.form['name']
         query = 'SELECT kinase_id, kinase_name, family, inhibitor FROM public.kinase'
     elif request.method == 'GET':
-        data = db.Query(query)
+        data = db.Query()
     return render_template('kinase/index.html', data=data, content_type='application/json')
