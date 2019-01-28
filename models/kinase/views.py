@@ -9,7 +9,7 @@ def index():
     kinase_name=None   
     if request.method == 'POST':
         kinase_name= request.form['name']
-        data = 'SELECT kinase_id, kinase_name, family, inhibitor FROM public.kinase'
+        query = 'SELECT kinase_id, kinase_name, family, inhibitor FROM public.kinase'
     elif request.method == 'GET':
         data = db.Query(query)
     return render_template('kinase/index.html', data=data, content_type='application/json')
