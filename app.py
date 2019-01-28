@@ -2,7 +2,6 @@
 
 #import flask and render template
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
 # use models directory to run blueprint functions
 from models.kinase.views import kinase_blueprint
 from models.inhibitor.views import inhibitor_blueprint
@@ -11,7 +10,6 @@ from models.analysis.views import analysis_blueprint
 
 APP = Flask(__name__)
 APP.config.from_object('config')
-db = SQLAlchemy(app)
 
 @APP.route("/")
 def index():
