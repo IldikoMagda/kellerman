@@ -12,7 +12,7 @@ def Query(query):
 
         # conn.cursor will return a cursor object, you can use this cursor to perform queries
         cursor = conn.cursor()
-        cursor.execute(query)
+        cursor.execute('SELECT * FROM public.kinase;')
 
         result = cursor.fetchall()
         conn.close()
