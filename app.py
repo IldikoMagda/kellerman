@@ -6,10 +6,9 @@ from flask import Flask, render_template
 from models.kinase.views import kinase_blueprint
 from models.inhibitor.views import inhibitor_blueprint
 from models.analysis.views import analysis_blueprint
-from flask import SQLAlchemy
+
 
 APP = Flask(__name__)
-
 APP.config.from_object('config')
 
 @APP.route("/")
