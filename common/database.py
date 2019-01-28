@@ -11,12 +11,11 @@ def GetKinases():
 
     # conn.cursor will return a cursor object, you can use this cursor to perform queries
     cursor = conn.cursor()
-    results = cursor.execute('SELECT * FROM kinase')
-    results = cursor.fetchall()
+    kinases = cursor.execute('SELECT * FROM kinase')
+    kinases = cursor.fetchall()
+    cursor.close()
     conn.close()
-    return results
-except:
-    return 'An error occured while executing SQL query'
+    return kinases
 
 
 def Query(query):
