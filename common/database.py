@@ -14,7 +14,7 @@ def Query(query):
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM public.kinase;')
 
-        result = cursor.fetchall()
+        data = cursor.fetchall()
         conn.close()
         # print("Print each row and it's columns values")
         # for row in result:
