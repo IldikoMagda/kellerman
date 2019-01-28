@@ -22,5 +22,3 @@ def Query(query):
         #     print("Name = ", row[1])
         #     print("Family  = ", row[2], "\n")
         return data
-    except:
-        return 'An error occured while executing SQL query'
