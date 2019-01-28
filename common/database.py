@@ -1,23 +1,6 @@
 import os
 import psycopg2
 
-def GetKinases():
-
-    # Define our connection string
-    conn_string = os.getenv('DB_CONNECTIONS')
-
-    # get a connection, if a connect cannot be made an exception will be raised here
-    conn = psycopg2.connect(conn_string)
-
-    # conn.cursor will return a cursor object, you can use this cursor to perform queries
-    cursor = conn.cursor()
-    kinases = cursor.execute('SELECT * FROM kinase')
-    kinases = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return kinases
-
-
 def Query(query):
 
     # Define our connection string
