@@ -16,4 +16,4 @@ def index():
             query = query + " WHERE kinase_name LIKE '%" + nameFilter + "%'"
             print('Query: ' + query)
         data = db.Query(query)
-    return render_template('kinase/index.html', data=data)
+    return render_template('kinase/index.html', data=data, content_type='application/json')
