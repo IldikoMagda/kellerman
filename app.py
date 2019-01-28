@@ -10,9 +10,7 @@ from flask import SQLAlchemy
 
 APP = Flask(__name__)
 
-app.config.from_object(os.environ['APP_SETTINGS'])
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+APP.config.from_object('config')
 
 @APP.route("/")
 def index():
