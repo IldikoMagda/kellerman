@@ -3,6 +3,28 @@
 
 {% block content %}
 
-<h1> This is the Analysis page</h1>
+<form name="file" action= {{ url_for('analysis.upload') }} method="POST" enctype="multipart/form-data">
+	<!-- COMPONENT START -->
+	<div class="form">
+      <label for="exampleFormControlFile1">Proteomics File browser</label>
+
+
+		<div class="input-group input-file" name="file">
+    		<input type="file" name="file" class="form-control" accept=".tsv" multiple/>			
+            <span class="input-group-btn">
+        
+    		</span>
+
+		</div>
+	</div>
+	<!-- COMPONENT END -->
+	<div class="form-group">
+		<button type="submit" name="file" value="file" class="btn btn-primary pull-right">Submit</button>
+		<button type="reset" class="btn btn-danger">Reset</button>
+	</div>
+</form>
+</div>
+</div>
+
 
 {% endblock %}
