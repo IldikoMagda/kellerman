@@ -1,54 +1,46 @@
-<<<<<<< HEAD
-import psycopg2
-import sys
-import os
+
 
 =======
 import os
 import psycopg2
->>>>>>> f5809a5f98e4871d30f3dfbc6fbd3684ac838f37
-
-def GetKinases():
-
-    # Define our connection string
-    conn_string = os.getenv('DB_CONNECTIONS')
-
-    # get a connection, if a connect cannot be made an exception will be raised here
-    conn = psycopg2.connect(conn_string)
-
-    # conn.cursor will return a cursor object, you can use this cursor to perform queries
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM kinase')
-
-    kinases = cursor.fetchall()
-    conn.close()
-    return kinases
 
 
 def Query(query):
 
     # Define our connection string
-    conn_string = os.getenv('DB_CONNECTION')
+    conn_string = os.getenv("host='ec2-54-75-245-94.eu-west-1.compute.amazonaws.com' dbname='d71uh4v1fd2hq' user='tdsneouerzmxkj' password='92a500cb091fe70168b32c66fa6a3d6c376d467d57fb9b663eb5d13446ecb2e6'")
     print(conn_string)
     try:
         # get a connection, if a connect cannot be made an exception will be raised here
         conn = psycopg2.connect(conn_string)
 
         # conn.cursor will return a cursor object, you can use this cursor to perform queries
-        cursor = conn.cursor()
-        cursor.execute(query)
+        cur = conn.cursor()
+        cur.execute(query)
 
-        result = cursor.fetchall()
+        query = cur.fetchall()
         conn.close()
         # print("Print each row and it's columns values")
         # for row in result:
         #     print("Id = ", row[0], )
         #     print("Name = ", row[1])
         #     print("Family  = ", row[2], "\n")
-        return result
+        return query
     except:
-<<<<<<< HEAD
         return 'An error occured while executing SQL query'
-=======
-        return 'An error occured while executing SQL query'
->>>>>>> f5809a5f98e4871d30f3dfbc6fbd3684ac838f37
+
+#def GetKinases():
+    
+    # Define our connection string
+    #conn_string = os.getenv('DB_CONNECTIONS')
+
+    # get a connection, if a connect cannot be made an exception will be raised here
+    #conn = psycopg2.connect(conn_string)
+
+    # conn.cursor will return a cursor object, you can use this cursor to perform queries
+    #cursor = conn.cursor()
+    #cursor.execute('SELECT * FROM kinase')
+
+    #kinases = cursor.fetchall()
+    #conn.close()
+    #return kinase
