@@ -1,6 +1,8 @@
 """ Define All essential configurations we will need for the app itself"""
 import os
 
+class Config(object):
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 DEBUG = True    # Turns on debugging features in Flask
 BCRYPT_LOG_ROUNDS = 12  # Configuration for the Flask-Bcrypt extension --see more in whatidid.txt

@@ -6,7 +6,7 @@ import common.database as db
 kinase_blueprint = Blueprint('kinase', __name__)
 @kinase_blueprint.route('/', methods=['GET', 'POST'])
 def index():   
-    query = 'SELECT kinase_id, kinase_name, family, inhibitor FROM kinase'
+    query = 'SELECT kinase_id, kinase_name, family, inhibitor FROM public.kinase'
     if request.method == 'GET':
         data = db.Query(query)
     else:
