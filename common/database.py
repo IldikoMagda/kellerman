@@ -1,5 +1,9 @@
+
+
+=======
 import os
 import psycopg2
+
 
 def Query(query):
 
@@ -39,4 +43,4 @@ def Query(query):
 
     #kinases = cursor.fetchall()
     #conn.close()
-    #return kinases
+    #return kinase
