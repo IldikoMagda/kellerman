@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -11,7 +12,7 @@
 <a href="{{ url_for('inhibitor.index') }}">Inhibitors</a>
 <a href="{{ url_for('analysis.index') }}">Analysis</a>
 </div>
- 
-<div class= "container">
+
 {% block content %}{% endblock %}
 </div>
+
