@@ -1,12 +1,17 @@
+
 """This file is to run the essential functions of the analysis site """
 import os
 from flask import Flask, Blueprint, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import config
 
+analysis_blueprint= Blueprint('analysis', __name__)
+
+"""This file is to run the functions of the analysis site """
 __author__ = "Ildiko"
 
 analysis_blueprint = Blueprint('analysis', __name__) #create the blueprint to wrap up the entire code
+
 
 UPLOAD_FOLDER = config.UPLOAD_FOLDER #contains abs path to uploaded file
 
@@ -17,6 +22,7 @@ def allowed_file(filename):
 
 @analysis_blueprint.route('/', methods=('POST','GET'))
 def index():
+
     return render_template("analysis/index.html")
 
 
@@ -35,4 +41,7 @@ def upload():
         
 
     return render_template('analysis/uploadedfile.html')
+
+    """ define the routes functions  """
+
 

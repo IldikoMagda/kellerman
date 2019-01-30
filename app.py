@@ -1,8 +1,4 @@
-"""" This file is to collect the entire app together. Define the routes and register them """
-
-#import flask and render template
 from flask import Flask, render_template
-# use models directory to run blueprint functions
 from models.kinase.views import kinase_blueprint
 from models.inhibitor.views import inhibitor_blueprint
 from models.analysis.views import analysis_blueprint
