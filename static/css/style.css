@@ -1,4 +1,8 @@
-{
+
+{% block content %}
+
+* {
+
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   
@@ -20,6 +24,9 @@ body {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+
+  font-weight: bold;
+
 }
 /* Change color on hover */
 .topnav a:hover {
@@ -33,16 +40,19 @@ body {
 }
 /* Style the content */
 .content {
-  background-color: #24434F; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to bottom right, #24434F, #319FAD); /* Standard syntax (must be last) */
+
   padding: 10px;
-  height: 200px; /* Should be removed. Only for demonstration */
   padding-left: 50px;
   padding-right: 50px;
   text-align: left;
-  colour: white;
+  color: black;
+
 }
 /* Style the footer */
 .footer {
   padding: 5px;
+
   font-size: 12px;
+  
+{% endblock %}
+
