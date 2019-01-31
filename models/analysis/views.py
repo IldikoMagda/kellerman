@@ -31,6 +31,9 @@ def upload():
     if request.method == 'POST':
         uploadedfile = None
         target = os.path.join(UPLOAD_FOLDER, 'uploads')
+        if not os.path.isdir(target):
+            os.makedirs(target, mode= 0775)
+        #os.chmod('target', stat.)
         file = request.files['file']
         for file in request.files.getlist('file'):
             filename = secure_filename(file.filename)
@@ -44,4 +47,4 @@ def upload():
 @analysis_blueprint.route('analysis/uploadedfile/<uploadedfile>', methods=['GET'])
 def results(uploadedfile):
     """This function maybe runs the analysis """
-    print "love python"
+    print("love python")
