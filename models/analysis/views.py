@@ -1,16 +1,14 @@
 
 """This file is to run the essential functions of the analysis site """
-import os
-from flask import Flask, Blueprint, render_template, request, url_for, redirect
+import os, stat
+from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import config
 
-analysis_blueprint= Blueprint('analysis', __name__)
 
-"""This file is to run the functions of the analysis site """
 __author__ = "Ildiko"
 
-analysis_blueprint = Blueprint('analysis', __name__) #create the blueprint to wrap up the entire code
+analysis_blueprint = Blueprint('analysis', __name__) #bluprint to wrap up the code
 
 
 UPLOAD_FOLDER = config.UPLOAD_FOLDER #contains abs path to uploaded file
@@ -20,28 +18,30 @@ def allowed_file(filename):
     """ allowed extensions to upload""" # somehow works in google chrome not in firefox....
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@analysis_blueprint.route('/', methods=('POST','GET'))
-def index():
 
+@analysis_blueprint.route('/', methods=['POST', 'GET'])
+def index():
+    """ Main site of analysis with the form"""
     return render_template("analysis/index.html")
 
 
-@analysis_blueprint.route('uploadedfile/', methods=('POST','GET'))
+@analysis_blueprint.route('uploadedfile/', methods=['POST', 'GET'])
 def upload():
     "This is my new favourite function "
-    target = os.path.join(UPLOAD_FOLDER, '/uploads')
-    if not os.path.isdir(target):
-        os.mkdir(target)
-    file = request.files['file']
-    for file in request.files.getlist('file'):
-        filename = secure_filename(file.filename)
-        destination = "/".join([target, filename])
-        file.save(destination)
-    # add your custom code to check that the uploaded file is a valid image and not a malicious file (out-of-scope for this post)
-        
-
-    return render_template('analysis/uploadedfile.html')
-
-    """ define the routes functions  """
+    if request.method == 'POST':
+        uploadedfile = None
+        target = os.path.join(UPLOAD_FOLDER, 'uploads')
+        file = request.files['file']
+        for file in request.files.getlist('file'):
+            filename = secure_filename(file.filename)
+            destination = "/".join([target, filename])
+            file.save(destination)
+            os.chmod('file', stat.S_IRWXO)
+        redirect(url_for('analysis/uploadedfile', filename=uploadedfile))
+    return render_template("analysis/index.html")
 
 
+@analysis_blueprint.route('analysis/uploadedfile/<uploadedfile>', methods=['GET'])
+def results(uploadedfile):
+    """This function maybe runs the analysis """
+    print "love python"
