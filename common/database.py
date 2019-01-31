@@ -4,7 +4,7 @@ import psycopg2
 def Query(query):
 
     # Define our connection string
-    conn_string = os.getenv("host='ec2-54-75-245-94.eu-west-1.compute.amazonaws.com' dbname='d71uh4v1fd2hq' user='tdsneouerzmxkj' password='92a500cb091fe70168b32c66fa6a3d6c376d467d57fb9b663eb5d13446ecb2e6'")
+    conn_string = ("host='ec2-54-75-245-94.eu-west-1.compute.amazonaws.com' dbname='d71uh4v1fd2hq' user='tdsneouerzmxkj' password='92a500cb091fe70168b32c66fa6a3d6c376d467d57fb9b663eb5d13446ecb2e6'")
     print(conn_string)
     try:
         # get a connection, if a connect cannot be made an exception will be raised here
