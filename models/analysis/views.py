@@ -32,7 +32,7 @@ def upload():
         uploadedfile = None
         target = os.path.join(UPLOAD_FOLDER, 'uploads')
         if not os.path.isdir(target):
-            os.makedirs(target, mode= 0775)
+            os.mkdir(target, mode= 0775)
         #os.chmod('target', stat.)
         file = request.files['file']
         for file in request.files.getlist('file'):
