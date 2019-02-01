@@ -1,25 +1,25 @@
-
 {% extends "menu.html" %}
-
-
 {% block content %}
-<title>Kinase Results</title>
-
-<h2>Results</h2>
-{% for item in data %}
-<p>Name: {{ "KINASE_NAME" }}</p>
-<p>Accession ID: {{item[1]}}</p>
-<p>Uniprot ID: : {{item[2]}}</p>
-<p>Group: {{item[3]}}</p>
-<p>Family: {{item[4]}}</p>
-<p>Subfamily: {{item[5]}}</p>
-<p>Protein Sequence: {{item[6]}}</p>
-<p>Kinase Domain: {{item[7]}}</p>
-<p>Entrez ID: {{item[8]}}</p>
-<p>chromosome: {{item[9]}}</p>
-<p>Chromosome Location: {{item[10]}}</p>
-<p>Subcellur location: {{item[11]}}</p>
-{% endfor %}
-
-
-{% endblock %}
+<div style="content">
+    {% for item in data %}
+    <h2>{{item[0]}} | {{item[2]}}</h2>
+        
+        
+    <table style="width:50%">
+        <tr>
+            <td>Group : {{item[3]}} </td>
+            <td>Family : {{item[4]}} </td>
+            <td>Subfamily : {{item[5]}} </td>
+            <td>Chromosome : {{item[10]}} </td>
+            <td>Subcellular location : {{item[11]}}
+            <td>Entrez ID : {{item[8]}} </td>
+            <td>Uniprot ID : {{item[3]}} </td>
+        </td>
+          
+        
+    {% endfor %}
+        
+        
+</div> 
+        
+{% endblock %} 
