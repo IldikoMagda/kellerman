@@ -1,0 +1,25 @@
+
+{% extends "menu.html" %}
+
+
+{% block content %}
+<title>Kinase Results</title>
+
+<h2>Results</h2>
+{% for item in data %}
+<p>Name: {{ "KINASE_NAME" }}</p>
+<p>Accession ID: {{item[1]}}</p>
+<p>Uniprot ID: : {{item[2]}}</p>
+<p>Group: {{item[3]}}</p>
+<p>Family: {{item[4]}}</p>
+<p>Subfamily: {{item[5]}}</p>
+<p>Protein Sequence: {{item[6]}}</p>
+<p>Kinase Domain: {{item[7]}}</p>
+<p>Entrez ID: {{item[8]}}</p>
+<p>chromosome: {{item[9]}}</p>
+<p>Chromosome Location: {{item[10]}}</p>
+<p>Subcellur location: {{item[11]}}</p>
+{% endfor %}
+
+
+{% endblock %}
