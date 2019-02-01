@@ -9,14 +9,21 @@ def index():
     if request.method == 'POST':
         if request.form['name']:
             nameFilter = request.form['name']
+            nameFilter = nameFilter.upper()
         return redirect(url_for('kinase.results', nameFilter=nameFilter))
     return render_template('kinase/index.html')
 
 @kinase_blueprint.route('/results/<nameFilter>')
 def results(nameFilter):
-    # try:
-    query = 'SELECT * FROM public."Kinase_table" WHERE "KINASE_NAME" = ' + nameFilter + ' ; '
-    data = db.Query(query)
-    return render_template('kinase/results.html', data=data)   
-    # except:
-    #     return "Sorry! No information available for that kinase!"
+    try:
+        if nameFilter == '':
+           # query = 'SELECT * FROM test_schema.test_table'
+            # query = query + " WHERE kinase_n LIKE '%" + nameFilter + "%'"
+    # 
+            query =  'SELECT * FROM public."Kinase_table"'
+            query = query +  ' WHERE "KINASE_NAME" LIKE ' + nameFilter + ' '
+            data = db.Query(query)
+        return render_template('kinase/results.html', data=data)   
+    except:
+        return render_template ('kinase/error.html')
+    #    return "Sorry! No information available for that kinase!"
