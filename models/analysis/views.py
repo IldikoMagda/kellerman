@@ -28,26 +28,27 @@ def index():
     return render_template("analysis/index.html")
 
 
-@analysis_blueprint.route('uploadedfile/', methods=['POST', 'GET'])
+@analysis_blueprint.route('upload/', methods=['POST', 'GET'])
 def upload():
     "This is my new favourite function "
     if request.method == 'POST':
         uploadedfile = None
-        target = os.path.join(UPLOAD_FOLDER, 'uploads')
+        target = os.path.join(UPLOAD_FOLDER)
         #if not os.path.isdir(target):
             #os.mkdir(target, mode= 0775)
             #os.chmod('target', stat.S_IRWXO)
         file = request.files['file']
         for file in request.files.getlist('file'):
-            filename = secure_filename(file.filename)
-            destination = "/".join([target, filename])
-            file.save(destination)
+            uploadedfile = secure_filename(file.filename)
+            #destination = "/".join([target, uploadedfile])
+            file.save(os.path.join(UPLOAD_FOLDER, uploadedfile))
             #os.chmod('file', stat.S_IRWXO)
-        redirect(url_for('analysis/uploadedfile/<uploadedfile>', filename=uploadedfile))
-    return render_template("analysis/index.html")
+        redirect(url_for('analysis.uploaded', file=file))
+    return render_template("analysis/uploadedfile.html")
 
 
-@analysis_blueprint.route('analysis/uploadedfile/<uploadedfile>', methods=['GET'])
-def results(uploadedfile):
+@analysis_blueprint.route('uploaded/', methods=['GET', 'POST'])
+def uploaded():
     """This function maybe runs the analysis """
-    print("love python")
+    return render_template("analysis/uploadedfile.html")
+
