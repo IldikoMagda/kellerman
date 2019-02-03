@@ -5,6 +5,9 @@ from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import config
 
+#from flask_wtf import FlaskForm
+#from wtforms import StringField, SubmitField
+#from wtforms.validators import Required
 
 __author__ = "Ildiko"
 
@@ -31,16 +34,16 @@ def upload():
     if request.method == 'POST':
         uploadedfile = None
         target = os.path.join(UPLOAD_FOLDER, 'uploads')
-        if not os.path.isdir(target):
-            os.mkdir(target, mode= 0775)
-        #os.chmod('target', stat.)
+        #if not os.path.isdir(target):
+            #os.mkdir(target, mode= 0775)
+            #os.chmod('target', stat.S_IRWXO)
         file = request.files['file']
         for file in request.files.getlist('file'):
             filename = secure_filename(file.filename)
             destination = "/".join([target, filename])
             file.save(destination)
-            os.chmod('file', stat.S_IRWXO)
-        redirect(url_for('analysis/uploadedfile', filename=uploadedfile))
+            #os.chmod('file', stat.S_IRWXO)
+        redirect(url_for('analysis/uploadedfile/<uploadedfile>', filename=uploadedfile))
     return render_template("analysis/index.html")
 
 
