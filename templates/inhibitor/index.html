@@ -1,10 +1,16 @@
-{% extends "index.html" %}
+{% extends "menu.html" %}
 
 
 {% block content %}
 
+<title>Inhibitors</title>
+<div class="search-container">
+  <form action="{{ url_for('inhibitor.index') }}", method = "post">
+      <input type="text" placeholder="Search.." name="name">
+        <button type="submit">Submit</button>
+        </div>
+    </form>
+>
+</div>
 
-
-<h1> This is the Inhibitor page</h1>
-<p>content new new</p>
 {% endblock %}
