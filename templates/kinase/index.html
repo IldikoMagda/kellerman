@@ -1,37 +1,14 @@
-
-
 {% extends "menu.html" %}
 
-
-
 {% block content %}
-<div class="content">
+<title>Kinases</title>
+<p></p>
 <div class="search-container">
-    <form action="{{ url_for('kinase.index') }}">
-        <input type="text" placeholder="Search.." name="search">
-            <button type="submit">Submit</button>
-        </form>
+  <form action="{{ url_for('kinase.index') }}", method = "post">
+      <input type="text" placeholder="Search.." name="name">
+          <button type="submit">Submit</button>
+      </form>
 </div>
-<table style="width:100%">
-        <tr>
-          <th>ID</th>
-          <th>Name</th> 
-          <th>Fam</th>
-          <th>Inhibitor</th>
-        </tr>
-  <tbody>
-     {% for item in data %}
-    <tr>
-      <td>{{ item[0] }}</td>
-      <td>{{ item[1] }}</td>
-      <td>{{ item[2] }}</td>
-      <td>{{ item[3] }}</td>
-     </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-</div>
-
 
 {% endblock %}
+

@@ -1,0 +1,22 @@
+{% extends "menu.html" %}
+
+
+{% block content %}
+
+<title>Inhibitors Results</title>
+
+</div>
+<h2>Results</h2>
+{% for item in data %}
+<p>Name: {{ item[0] }}</p>
+<p>Chemical Strucutre: {{item[1]}} </p>
+<p>Molecular weight: {{item[2]}}</p>
+<p>Cnumber: {{item[3]}}</p>
+<p>Action: {{item[4]}}</p>
+<p>Inchl key: {{item[5]}}</p>
+<p>Pubchem cid: {{item[6]}}</p>
+<p>Smiles: {{item[7]}}</p>
+
+{% endfor %}
+
+{% endblock %}

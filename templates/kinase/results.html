@@ -1,0 +1,25 @@
+{% extends "menu.html" %}
+{% block content %}
+<div style="content">
+    {% for item in data %}
+    <h2>{{item[0]}} | {{item[2]}}</h2>
+        
+        
+    <table style="width:50%">
+        <tr>
+            <td>Group : {{item[3]}} </td>
+            <td>Family : {{item[4]}} </td>
+            <td>Subfamily : {{item[5]}} </td>
+            <td>Chromosome : {{item[10]}} </td>
+            <td>Subcellular location : {{item[11]}}
+            <td>Entrez ID : {{item[8]}} </td>
+            <td>Uniprot ID : {{item[3]}} </td>
+        </td>
+          
+        
+    {% endfor %}
+        
+        
+</div> 
+        
+{% endblock %} 
