@@ -4,8 +4,8 @@ import os
 import pickle
 
 import pandas as pd
-import xlrd
-import csv
+#import xlrd
+#mport csv
 
 import config
 
