@@ -13,19 +13,19 @@ import config
 UPLOAD_FOLDER = config.UPLOAD_FOLDER
 
 
-def process_file(file):
+def process_file():
     """ this function will find and open the file"""
     pathjoin = os.path.join
     for file in  os.listdir(UPLOAD_FOLDER):
         mydearfile = open(pathjoin(UPLOAD_FOLDER, 'az20.tsv'))
     return mydearfile
 
-def actual_analysis(mydearfile):
+def actual_analysis():
     """ this is where the analysis run"""
 
     __author__= "Connor"
 
-    rdf = process_file(file)
+    rdf = process_file()
     percentages = []
     rdf = pd.read_csv("az20.tsv", sep="\t")
     df = rdf.dropna(how="all", axis=1)
