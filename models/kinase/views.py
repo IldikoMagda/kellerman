@@ -15,15 +15,21 @@ def index():
 
 @kinase_blueprint.route('/results/<nameFilter>')
 def results(nameFilter):
-    try:
-        if nameFilter == '':
-           # query = 'SELECT * FROM test_schema.test_table'
-            # query = query + " WHERE kinase_n LIKE '%" + nameFilter + "%'"
-    # 
-            query =  'SELECT * FROM public."Kinase_table"'
-            query = query +  ' WHERE "KINASE_NAME" LIKE ' + nameFilter + ' '
-            data = db.Query(query)
-        return render_template('kinase/results.html', data=data)   
-    except:
-        return render_template ('kinase/error.html')
+    # try:
+    if nameFilter == '':
+        #query =  'SELECT * FROM public."Kinase_table" '
+        #data = db.Query(query)
+        data = db.Query(query)
+    #query = 'SELECT * FROM test_schema.test_table WHERE kinase_n LIKE "%' + nameFilter + '%"'
+    query = 'SELECT * FROM public."Kinase_table" ' # WHERE "KINASE_NAME" = "%' + nameFilter + '%"' 
+  
+    data = db.Query(query)
+    return render_template('kinase/results.html', data=data, content_type='application/json')   
+    
+    
+    
+    
+    
+    #except:
+     #   return render_template ('kinase/error.html')
     #    return "Sorry! No information available for that kinase!"
