@@ -34,11 +34,11 @@ def actual_analysis():
     """ this is where the analysis run"""
 
     __author__ = "Connor"
-    
+
     percentages = []
 
     #open file and read with pandas with delimiter
-    rdf = pd.read_csv((process_file()), sep="\t")
+    rdf = pd.read_csv((process_file()), delim_whitespace=True)
     df = rdf.dropna(how="all", axis=1)
     df1 = df.loc[(df!=0).any(1)]
 
