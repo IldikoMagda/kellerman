@@ -42,7 +42,7 @@ def upload():
 def uploaded():
     """This function maybe runs the analysis """
     # take the file and analise
-    result_object = process_file.actual_analysis(file)
+    result_object = process_file.actual_analysis()
     #delete the files in the upload folder
     process_file.delete_foldercontent()
 
