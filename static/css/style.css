@@ -1,12 +1,12 @@
+{% extends "menu.html" %}
 
 {% block content %}
 
-* {
-
+/* * {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
-  
-}
+} */
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -14,45 +14,39 @@ body {
 /* Style the top navigation bar */
 .topnav {
   overflow: hidden;
-  background-color: #0d1a1f;
+  background-color: #011638
 }
 /* Style the topnav links */
 .topnav a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: aliceblue;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-
-  font-weight: bold;
+  background-color: #011638;
 
 }
 /* Change color on hover */
 .topnav a:hover {
-  background-color: #24434F;
+  background-color: #011638;
   color: #f2f2f2;
-  text-decoration: underline;
- 
-}
-.active {
-  background-color:  #24434F;
+  font-weight: bold;
 }
 /* Style the content */
 .content {
-
   padding: 10px;
   padding-left: 50px;
   padding-right: 50px;
   text-align: left;
-  color: black;
-
+  color: #011638;
 }
 /* Style the footer */
 .footer {
   padding: 5px;
-
   font-size: 12px;
-  
+  background-color: aliceblue;
+}
+
 {% endblock %}
 
