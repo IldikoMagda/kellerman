@@ -3,14 +3,17 @@
 
 {% block content %}
 
+
 <title>Inhibitors</title>
+<div class="content">
+<h1>Search Inhibitors</h1>
 <div class="search-container">
   <form action="{{ url_for('inhibitor.index') }}", method = "post">
       <input type="text" placeholder="Search.." name="name">
-        <button type="submit">Submit</button>
+        <button type="submit">GO!</button>
         </div>
     </form>
->
-</div>
 
+
+</div>
 {% endblock %}
