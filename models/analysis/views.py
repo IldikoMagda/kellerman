@@ -34,7 +34,7 @@ def upload():
         for file in request.files.getlist('file'):
             uploadedfile = secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, uploadedfile))
-            return redirect(url_for('analysis.uploaded', file=file))
+            return redirect(url_for('analysis.uploaded', uploadedfile=uploadedfile))
     return render_template("analysis/index.html")
 
 

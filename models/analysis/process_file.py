@@ -17,8 +17,8 @@ def process_file():
     """ this function will find and open the file"""
     pathjoin = os.path.join
     for file in  os.listdir(UPLOAD_FOLDER):
-        mydearfile = open(pathjoin(UPLOAD_FOLDER, 'az20.tsv'))
-    return mydearfile
+        mydearfile = open(pathjoin(UPLOAD_FOLDER, file))
+        return mydearfile
 
 def actual_analysis():
     """ this is where the analysis run"""
@@ -27,7 +27,7 @@ def actual_analysis():
 
     rdf = process_file()
     percentages = []
-    rdf = pd.read_csv("az20.tsv", sep="\t")
+    rdf = pd.read_csv((process_file()), sep="\t")
     df = rdf.dropna(how="all", axis=1)
     df1 = df.loc[(df!=0).any(1)]
 
