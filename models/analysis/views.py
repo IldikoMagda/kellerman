@@ -1,10 +1,10 @@
 
 """This file is to run the essential functions of the analysis site """
-import os, stat
+import os
 from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import config
-
+from models.analysis import process_file
 
 __author__ = "Ildiko"
 
@@ -25,26 +25,25 @@ def index():
     return render_template("analysis/index.html")
 
 
-@analysis_blueprint.route('uploadedfile/', methods=['POST', 'GET'])
+@analysis_blueprint.route('upload/', methods=['POST', 'GET'])
 def upload():
-    "This is my new favourite function "
+    "This function uploads the file to uploads folder "
     if request.method == 'POST':
         uploadedfile = None
-        target = os.path.join(UPLOAD_FOLDER, 'uploads')
-        if not os.path.isdir(target):
-            os.mkdir(target, mode= 0775)
-        #os.chmod('target', stat.)
         file = request.files['file']
         for file in request.files.getlist('file'):
-            filename = secure_filename(file.filename)
-            destination = "/".join([target, filename])
-            file.save(destination)
-            os.chmod('file', stat.S_IRWXO)
-        redirect(url_for('analysis/uploadedfile', filename=uploadedfile))
+            uploadedfile = secure_filename(file.filename)
+            file.save(os.path.join(UPLOAD_FOLDER, uploadedfile))
+            return redirect(url_for('analysis.uploaded', uploadedfile=uploadedfile))
     return render_template("analysis/index.html")
 
 
-@analysis_blueprint.route('analysis/uploadedfile/<uploadedfile>', methods=['GET'])
-def results(uploadedfile):
+@analysis_blueprint.route('uploaded/', methods=['GET', 'POST'])
+def uploaded():
     """This function maybe runs the analysis """
-    print("love python")
+    # take the file and analise
+    result_object = process_file.actual_analysis()
+    #delete the files in the upload folder
+    process_file.delete_foldercontent()
+
+    return render_template("analysis/results.html", process_file=result_object)
