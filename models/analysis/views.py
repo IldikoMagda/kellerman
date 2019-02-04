@@ -1,13 +1,10 @@
 
 """This file is to run the essential functions of the analysis site """
-import os, stat
+import os
 from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import config
-
-#from flask_wtf import FlaskForm
-#from wtforms import StringField, SubmitField
-#from wtforms.validators import Required
+from models.analysis import process_file
 
 __author__ = "Ildiko"
 
@@ -30,25 +27,23 @@ def index():
 
 @analysis_blueprint.route('upload/', methods=['POST', 'GET'])
 def upload():
-    "This is my new favourite function "
+    "This function uploads the file to uploads folder "
     if request.method == 'POST':
         uploadedfile = None
-        target = os.path.join(UPLOAD_FOLDER)
-        #if not os.path.isdir(target):
-            #os.mkdir(target, mode= 0775)
-            #os.chmod('target', stat.S_IRWXO)
         file = request.files['file']
         for file in request.files.getlist('file'):
             uploadedfile = secure_filename(file.filename)
-            #destination = "/".join([target, uploadedfile])
             file.save(os.path.join(UPLOAD_FOLDER, uploadedfile))
-            #os.chmod('file', stat.S_IRWXO)
-        redirect(url_for('analysis.uploaded', file=file))
-    return render_template("analysis/uploadedfile.html")
+            return redirect(url_for('analysis.uploaded', file=file))
+    return render_template("analysis/index.html")
 
 
 @analysis_blueprint.route('uploaded/', methods=['GET', 'POST'])
 def uploaded():
     """This function maybe runs the analysis """
-    return render_template("analysis/uploadedfile.html")
+    # take the file and analise
+    result_object = process_file.actual_analysis(file)
+    #delete the files in the upload folder
+    process_file.delete_foldercontent()
 
+    return render_template("analysis/results.html", process_file=result_object)
