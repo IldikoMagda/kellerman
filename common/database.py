@@ -35,6 +35,23 @@ def Inhibitor(inhibitor):
     cur.close()
     conn.close()     # close connection 
 
+# set function for phosphotiste table 
+def Phospho(phosphosite):
+    #start connecition
+    conn = psycopg2.connect("dbname=d71uh4v1fd2hq user=tdsneouerzmxkj password=92a500cb091fe70168b32c66fa6a3d6c376d467d57fb9b663eb5d13446ecb2e6 host=ec2-54-75-245-94.eu-west-1.compute.amazonaws.com")
+ 
+    cur = conn.cursor()     # call cursor
+    cur.execute(phosphosite)      # execute query
+  
+    phosphosite = cur.fetchall()
+    return phosphosite
+    cur.close()
+    conn.close()
+
+
+
+
+
 #def GetKinases():
     
     # Define our connection string
