@@ -1,25 +1,59 @@
+
 {% extends "menu.html" %}
 {% block content %}
-<div style="content">
-    {% for item in data %}
-    <h2>{{item[0]}} | {{item[2]}}</h2>
-        
-        
-    <table style="width:50%">
+<div class="content">
+<title> Kinase Results </title>
+
+{% for item in data %}
+
+<h1>{{item[2]}}</h1> 
+<h3>General Information</h3>
+    <table style="width:100%">
+      <tr>
+        <td>Group : {{item[4]}} </td>
+      </tr>
+      <tr>
+        <td>Family : {{item[5]}} </td>
+      </tr>
+      <tr>
+        <td>Subfamily : {{item[6]}} </td>
+        </tr>
         <tr>
-            <td>Group : {{item[3]}} </td>
-            <td>Family : {{item[4]}} </td>
-            <td>Subfamily : {{item[5]}} </td>
-            <td>Chromosome : {{item[10]}} </td>
-            <td>Subcellular location : {{item[11]}}
-            <td>Entrez ID : {{item[8]}} </td>
-            <td>Uniprot ID : {{item[3]}} </td>
+        <td>Chromosome : {{item[11]}} </td>
+        </tr>
+        <tr>
+        <td>Subcellular location : {{item[12]}}
         </td>
-          
-        
+        </tr>
+    </table>
+    <h3>Identities</h3>
+        <table style="width:100%">
+        <td>Accession Number : {{item[1]}} </td>
+        </tr>
+        <tr>
+        <td>Entrez ID : {{item[9]}} </td>
+        </tr>
+        <tr>
+        <td>Uniprot ID : {{item[3]}} </td>
+        </tr>
+        </table>
+    <h3>Transcriptomics</h3>
+    <table style="width:100%">
+        <tr>
+        <td>Protein Sequence: <div style="width: 110px; height: 50px; overflow: scroll;"> {{item[7]}}</div> </td> </tr>
+        <tr><td>Domain Sequece: <div style="width: 110px; height: 50px; overflow: scroll;"> {{item[8]}}</div></td></tr>
+        </tr>
+    </table>
     {% endfor %}
-        
-        
+    
+    <h3>Inhibitor</h3>
+    {% for item in data2 %}
+    <table style="width:100%">
+        <tr>
+            <td> {{item[0]}}</td>
+        </tr>
+    {% endfor %}       
+
 </div> 
         
 {% endblock %} 
