@@ -5,6 +5,7 @@ from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import config
 from models.analysis import process_file
+import pandas
 
 __author__ = "Ildiko"
 
@@ -27,10 +28,12 @@ def index():
 
 @analysis_blueprint.route('upload/', methods=['POST', 'GET'])
 def upload():
-    "This function uploads the file to uploads folder "
+    """This function uploads the file to uploads folder """
+
     if request.method == 'POST':
         uploadedfile = None
-        file = request.files['file']
+        file = request.files['file']        
+        # if file sent save it to upload_folder and redirect to analysis:
         for file in request.files.getlist('file'):
             uploadedfile = secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, uploadedfile))
@@ -46,4 +49,5 @@ def uploaded():
     #delete the files in the upload folder
     process_file.delete_foldercontent()
 
-    return render_template("analysis/results.html", process_file=result_object)
+    return render_template("analysis/results.html",
+                            tables=[result_object.to_html(classes='data', header="true")])

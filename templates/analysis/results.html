@@ -4,6 +4,10 @@
 {% block content %}
 
 <h1> This is the page where we show the results </h1>
-<p>Here is your results: "{{ process_file }}" </p>
+<p> Here is your file result: 
+        {% for table in tables %}
+        {{ table|safe }}
+{% endfor %}
+ </p>
 
 {% endblock %}

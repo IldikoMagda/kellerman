@@ -4,13 +4,15 @@ import os
 import pickle
 
 import pandas as pd
-#import xlrd
-#mport csv
+from pandas import DataFrame
+
 
 import config
 
 #the folder where you find the uploaded files
 UPLOAD_FOLDER = config.UPLOAD_FOLDER
+#the folder where the results can be saved 
+DOWNLOAD_FOLDER = config.DOWNLOAD_FOLDER
 
 
 def process_file():
@@ -20,14 +22,23 @@ def process_file():
         mydearfile = open(pathjoin(UPLOAD_FOLDER, file))
         return mydearfile
 
+def create_csv(dataframeobject):
+    """ This function turns pandas dataframe to CSV and saves
+    to DOWNLOAD_FOLDER"""
+    for file in os.listdir(UPLOAD_FOLDER):
+        file_to_csv= file.to_csv(os.path.join(DOWNLOAD_FOLDER,r'results.csv'),
+                                 sep='\t', encoding='utf-8')
+        return file_to_csv
+        
 def actual_analysis():
     """ this is where the analysis run"""
 
-    __author__= "Connor"
+    __author__ = "Connor"
 
-    rdf = process_file()
     percentages = []
-    rdf = pd.read_csv((process_file()), sep="\t")
+
+    #open file and read with pandas with delimiter
+    rdf = pd.read_csv((process_file()), delim_whitespace=True)
     df = rdf.dropna(how="all", axis=1)
     df1 = df.loc[(df!=0).any(1)]
 
@@ -57,15 +68,11 @@ def actual_analysis():
                'fold_change', 'p-value', 'percentage_difference (%)', 'controlCV', 'treatedCV']]
 
     test = df2.sort_values(['percentage_difference (%)'], ascending=True)
-    pickle_out = open("test", "wb")
-    pickle.dump(test, pickle_out)
-    pickle_out.close()
 
-    pickle_in = open("test", "rb")
-    return pickle.load(pickle_in) 
+    return test
 
 def delete_foldercontent():
-    """This function might be able to delete data from our folder"""
+    """This function might be able to delete data from our upload folder"""
     folder = UPLOAD_FOLDER
 
     for the_file in os.listdir(folder):
@@ -75,4 +82,3 @@ def delete_foldercontent():
             os.unlink(file_path)
     except Exception as e_ception:
         print(e_ception)
-
