@@ -8,7 +8,7 @@
 
 <h1>{{item[2]}}</h1> 
 <h3>General Information</h3>
-    <table style="width:100%">
+    <table>
       <tr>
         <td>Group : {{item[4]}} </td>
       </tr>
@@ -24,7 +24,7 @@
         <tr>
         <td>Subcellular location : {{item[12]}}
         </td>
-        </tr>
+
     </table>
     <h3>Identities</h3>
         <table style="width:100%">
@@ -38,21 +38,38 @@
         </tr>
         </table>
     <h3>Transcriptomics</h3>
-    <table style="width:100%">
+    <table style="width:40%">
         <tr>
-        <td>Protein Sequence: <div style="width: 110px; height: 50px; overflow: scroll;"> {{item[7]}}</div> </td> </tr>
-        <tr><td>Domain Sequece: <div style="width: 110px; height: 50px; overflow: scroll;"> {{item[8]}}</div></td></tr>
+        <td>Protein Sequence: <div style="width: 110px; height: 50px; overflow: auto;"> {{item[7]}}</div> </td>
+        <td>Domain Sequece: <div style="width: 110px; height: 50px; overflow: auto;"> {{item[8]}}</div></td></tr>
         </tr>
     </table>
     {% endfor %}
     
-    <h3>Inhibitor</h3>
+    <h3>Inhibitors</h3>
     {% for item in data2 %}
     <table style="width:100%">
         <tr>
             <td> {{item[0]}}</td>
         </tr>
-    {% endfor %}       
+    </table>
+    {% endfor %}
+  
+
+    <h3>Phosphorylation Sites</h3>
+    <div style="width: 18%; height: 200px; overflow:auto;">
+        <table>
+            <th>Target Gene</th>
+            <th>Phosopho Site</th>
+    
+          {% for item in data3 %}
+          <tr style="border-bottom:  1px solid #ddd; border-collapse: collapse; padding: 15px;">
+            <td> {{item[2]}}</td>
+            <td> {{item[6]}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+    </div>       
 
 </div> 
         
