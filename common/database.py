@@ -5,7 +5,7 @@ def Query(query):
 
     # Define our connection string
     conn_string = ("host='ec2-54-75-245-94.eu-west-1.compute.amazonaws.com' dbname='d71uh4v1fd2hq' user='tdsneouerzmxkj' password='92a500cb091fe70168b32c66fa6a3d6c376d467d57fb9b663eb5d13446ecb2e6'")
-    print(conn_string)
+
     try:
         # get a connection, if a connect cannot be made an exception will be raised here
         conn = psycopg2.connect(conn_string)
@@ -14,16 +14,43 @@ def Query(query):
         cur = conn.cursor()
         cur.execute(query)
 
-        query = cur.fetchall()
-        conn.close()
-        # print("Print each row and it's columns values")
-        # for row in result:
-        #     print("Id = ", row[0], )
-        #     print("Name = ", row[1])
-        #     print("Family  = ", row[2], "\n")
+        query = cur.fetchall()    # fetch query 
+        conn.close()            # close connection 
+
         return query
     except:
         return 'An error occured while executing SQL query'
+
+
+# function for inhibitor search 
+def Inhibitor(inhibitor):
+    #start connecition
+    conn = psycopg2.connect("dbname=d71uh4v1fd2hq user=tdsneouerzmxkj password=92a500cb091fe70168b32c66fa6a3d6c376d467d57fb9b663eb5d13446ecb2e6 host=ec2-54-75-245-94.eu-west-1.compute.amazonaws.com")
+ 
+    cur = conn.cursor()     # call cursor
+    cur.execute(inhibitor)      # execute query
+  
+    inhibitor = cur.fetchall()
+    return inhibitor
+    cur.close()
+    conn.close()     # close connection 
+
+# set function for phosphotiste table 
+def Phospho(phosphosite):
+    #start connecition
+    conn = psycopg2.connect("dbname=d71uh4v1fd2hq user=tdsneouerzmxkj password=92a500cb091fe70168b32c66fa6a3d6c376d467d57fb9b663eb5d13446ecb2e6 host=ec2-54-75-245-94.eu-west-1.compute.amazonaws.com")
+ 
+    cur = conn.cursor()     # call cursor
+    cur.execute(phosphosite)      # execute query
+  
+    phosphosite = cur.fetchall()
+    return phosphosite
+    cur.close()
+    conn.close()
+
+
+
+
 
 #def GetKinases():
     
