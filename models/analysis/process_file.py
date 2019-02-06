@@ -1,18 +1,22 @@
 
 """ This file will process the uploaded file. Take it, open it, analise it """
 import os
-import pickle
 
 import pandas as pd
 from pandas import DataFrame
-
+import matplotlib as mat
+mat.use('agg')
+import matplotlib.pyplot as plt
 
 import config
 
+
 #the folder where you find the uploaded files
 UPLOAD_FOLDER = config.UPLOAD_FOLDER
-#the folder where the results can be saved 
+#the folder where the results can be saved-the full csv
 DOWNLOAD_FOLDER = config.DOWNLOAD_FOLDER
+#folder for static files on the site, the picture
+STATIC_FOLDER = config.STATIC_FOLDER
 
 
 def process_file():
@@ -31,7 +35,7 @@ def create_csv(dataframeobject):
         return file_to_csv
         
 def actual_analysis():
-    """ this is where the analysis run"""
+    """ this is where the analysis of the uploaded tsv file run"""
 
     __author__ = "Connor"
 
@@ -67,9 +71,29 @@ def actual_analysis():
     df2 = df1[['Substrate', 'control_conc_mean', 'treated_conc_mean',
                'fold_change', 'p-value', 'percentage_difference (%)', 'controlCV', 'treatedCV']]
 
-    test = df2.sort_values(['percentage_difference (%)'], ascending=True)
-
+    sort = df2.sort_values(['percentage_difference (%)'], ascending=True)
+    test = sort.iloc[0:10:]
     return test
+
+def create_fancybargraph(objectfromanalysis):
+    """ this function uses matplotlib to create a graphical presentation about the uploaded file"""
+
+    __author__="Connor"    
+    inter = objectfromanalysis[['Substrate','percentage_difference (%)']]
+    new = inter.iloc[0:10, :]
+
+    ax = new.plot.bar(x='Substrate', y='percentage_difference (%)', rot=0)
+    ax.set_title('Top Ten Downregulated Kinases')
+
+    ax.get_legend().remove()
+    ax.set_ylabel('percentage_difference (%)')
+
+    plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
+
+    my_file = ax.get_figure()
+    my_file.savefig(os.path.join((STATIC_FOLDER), 'my_file.png'))
+    ourprecious = 'my_file.png'
+    return ourprecious
 
 def delete_foldercontent():
     """This function might be able to delete data from our upload folder"""

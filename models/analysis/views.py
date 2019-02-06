@@ -5,7 +5,10 @@ from flask import Blueprint, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import config
 from models.analysis import process_file
-import pandas
+import matplotlib as mat
+mat.use('agg')
+import matplotlib.pyplot as plt
+
 
 __author__ = "Ildiko"
 
@@ -48,6 +51,9 @@ def uploaded():
     result_object = process_file.actual_analysis()
     #delete the files in the upload folder
     process_file.delete_foldercontent()
+    #create our precious picture 
+    ourprecious = process_file.create_fancybargraph(result_object)
 
     return render_template("analysis/results.html",
-                            tables=[result_object.to_html(classes='data', header="true")])
+                            tables=[result_object.to_html(classes='data', header="true")],
+                            ourprecious=ourprecious)
