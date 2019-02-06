@@ -2,4 +2,6 @@ Flask
 psycopg2
 Flask-SQLAlchemy
 pandas
-python-matplotlib
+matplotlib==2.2.3
+numpy
+SQLAlchemy
