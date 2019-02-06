@@ -1,13 +1,23 @@
 {% extends "menu.html" %}
-
-
 {% block content %}
+
+<div class="content">
 
 <h1> This is the page where we show the results </h1>
 <p> Here is your file result: 
         {% for table in tables %}
         {{ table|safe }}
-{% endfor %}
- </p>
+    </p>
+
+your fancy pic: 
+
+    <img src="{{url_for('static', filename=ourprecious)}}" alt="Your results can't be displayed. Bad luck">
+
+    {% endfor %}
+
+<p>
+
+</p>
+</div>
 
 {% endblock %}
