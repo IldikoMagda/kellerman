@@ -19,8 +19,9 @@
 Please click on the button below to save your full results to your computer
 
 </p>
-<button type="button" style="background-color:rgb(34, 146, 34);color:white"  name= "Download" class="btn btn-primary btn-lg">Download Files</button>
-
+<form method="GET" action= {{url_for('analysis.saveresults') }} >
+<button type="submit" style="background-color:rgb(34, 146, 34);color:white"  name= "Download" class="btn btn-primary btn-lg">Download Files</button>
+</form>
 <p>
 
 </p>

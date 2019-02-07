@@ -26,6 +26,7 @@ def process_file():
         mydearfile = open(pathjoin(UPLOAD_FOLDER, file))
         return mydearfile
 
+
 def create_csv(dataframeobject):
     """ This function turns pandas dataframe to CSV and saves
     to DOWNLOAD_FOLDER"""
@@ -75,7 +76,7 @@ def actual_analysis():
     sort = df2.sort_values(['percentage_difference (%)'], ascending=True)
     
     test = sort.iloc[0:10:]
-    
+
     file_to_csv= sort.to_csv(os.path.join(DOWNLOAD_FOLDER, r'results.csv'),
                                  sep='\t', encoding='utf-8')
     return test
@@ -109,5 +110,7 @@ def delete_foldercontent():
     try:
         if os.path.isfile(file_path):
             os.unlink(file_path)
+
+        
     except Exception as e_ception:
         print(e_ception)
