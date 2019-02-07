@@ -82,12 +82,11 @@ def create_fancybargraph(objectfromanalysis):
     inter = objectfromanalysis[['Substrate','percentage_difference (%)']]
     new = inter.iloc[0:10, :]
 
-    ax = new.plot.bar(x='Substrate', y='percentage_difference (%)', rot=0)
+    ax = new.plot.bar(x='Substrate', y='percentage_difference (%)', rot=0, figsize=(7,3.5))
+    plt.subplots_adjust(bottom=0.35, left=0.35)
     ax.set_title('Top Ten Downregulated Kinases')
-
     ax.get_legend().remove()
     ax.set_ylabel('percentage_difference (%)')
-
     plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
 
     my_file = ax.get_figure()
