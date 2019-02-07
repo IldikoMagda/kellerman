@@ -9,11 +9,17 @@
         {{ table|safe }}
     </p>
 
-your fancy pic: 
+
 
     <img src="{{url_for('static', filename=ourprecious)}}" alt="Your results can't be displayed. Bad luck">
 
     {% endfor %}
+
+<p>
+Please click on the button below to save your full results to your computer
+
+</p>
+<button type="button" style="background-color:rgb(34, 146, 34);color:white"  name= "Download" class="btn btn-primary btn-lg">Download Files</button>
 
 <p>
 
