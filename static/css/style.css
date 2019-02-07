@@ -47,6 +47,14 @@ body {
   font-size: 12px;
   background-color: aliceblue;
 }
+/* Style for Scrollbox */
+.id1 {
+  border-bottom: 1px solid aliceblue; 
+  border-collapse: collapse; 
+  padding: 15px;
+}
+
+
 
 {% endblock %}
 
