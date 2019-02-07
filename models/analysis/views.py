@@ -9,7 +9,6 @@ import matplotlib as mat
 mat.use('agg')
 import matplotlib.pyplot as plt
 
-
 __author__ = "Ildiko"
 
 analysis_blueprint = Blueprint('analysis', __name__) #bluprint to wrap up the code
@@ -30,7 +29,6 @@ def index():
     """ Main site of analysis with the form"""
     return render_template("analysis/index.html")
 
-
 @analysis_blueprint.route('upload/', methods=['POST', 'GET'])
 def upload():
     """This function uploads the file to uploads folder """
@@ -43,7 +41,6 @@ def upload():
             file.save(os.path.join(UPLOAD_FOLDER, uploadedfile))
             return redirect(url_for('analysis.uploaded', uploadedfile=uploadedfile))
     return render_template("analysis/index.html")
-
 
 @analysis_blueprint.route('uploaded/', methods=['GET', 'POST'])
 def uploaded():
@@ -62,14 +59,15 @@ def uploaded():
                            tables=[result_object.to_html(classes='data', header="true")],
                            ourprecious=ourprecious)
 
-@analysis_blueprint.route('uploaded/', methods=['GET'])
-def saveresults(filename):
+@analysis_blueprint.route('saveresults/', methods=['GET', 'POST'])
+def saveresults():
     """This is the function which dowloads the results for the user"""
-    if request.method=='GET':
-        fname = DOWNLOAD_FOLDER
-        if fname is not None and os.path.isfile(fname):
-        
-            return send_from_directory(fname, filename, as_attachment=True)
+    #if request.method=='GET':
+    folder = DOWNLOAD_FOLDER
+    for eachfile in os.listdir(folder):
+        process_file.process_file()
+        if eachfile is not None:
+            return send_from_directory(folder, eachfile, as_attachment=True)
         else:
-            return redirect (url_for("analysis/index.html"))
-
+            return redirect (url_for('analysis.index'))
+#and os.path.isfile(eachfile)
