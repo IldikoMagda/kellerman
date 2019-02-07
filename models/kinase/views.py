@@ -32,7 +32,7 @@ def results(nameFilter):
     inhibitor = 'SELECT "INHIBITOR_NAME" FROM public."KiInh_relation_table" WHERE "KINASE_NAME" = \'' + nameFilter + '\''
     data2 = db.Inhibitor(inhibitor)
     # set query for phosphosites 
-    phosphosite = 'SELECT * FROM public."Phosphosite_table" WHERE "KINASE" = \'' + nameFilter + '\''
+    phosphosite = 'SELECT * FROM public."Phosphosite_table" WHERE "KINASE_NAME" = \'' + nameFilter + '\''
     data3 = db.Phospho(phosphosite)
 
     return render_template('kinase/results.html', data=data, data2=data2, data3=data3) 
