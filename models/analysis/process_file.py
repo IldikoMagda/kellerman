@@ -31,7 +31,7 @@ def create_csv(dataframeobject):
     to DOWNLOAD_FOLDER"""
     for file in os.listdir(UPLOAD_FOLDER):
         process_file()
-        file_to_csv= file.to_csv(os.path.join(DOWNLOAD_FOLDER, 'results.csv'),
+        file_to_csv= file.to_csv(os.path.join(DOWNLOAD_FOLDER, r'results.csv'),
                                  sep='\t', encoding='utf-8')
         return file_to_csv
         
@@ -73,9 +73,11 @@ def actual_analysis():
                'fold_change', 'p-value', 'percentage_difference (%)', 'controlCV', 'treatedCV']]
 
     sort = df2.sort_values(['percentage_difference (%)'], ascending=True)
-    file_to_csv= sort.to_csv(os.path.join(DOWNLOAD_FOLDER, 'results.csv'),
-                                 sep='\t', encoding='utf-8')
+    
     test = sort.iloc[0:10:]
+    
+    file_to_csv= sort.to_csv(os.path.join(DOWNLOAD_FOLDER, r'results.csv'),
+                                 sep='\t', encoding='utf-8')
     return test
 
 def create_fancybargraph(objectfromanalysis):

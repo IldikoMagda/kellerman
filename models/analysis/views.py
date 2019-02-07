@@ -62,7 +62,7 @@ def uploaded():
                            tables=[result_object.to_html(classes='data', header="true")],
                            ourprecious=ourprecious)
 
-@analysis_blueprint.route('uploaded/s', methods=['GET'])
+@analysis_blueprint.route('uploaded/', methods=['GET'])
 def saveresults(filename):
     """This is the function which dowloads the results for the user"""
     if request.method=='GET':
