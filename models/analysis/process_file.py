@@ -26,11 +26,13 @@ def process_file():
         mydearfile = open(pathjoin(UPLOAD_FOLDER, file))
         return mydearfile
 
+
 def create_csv(dataframeobject):
     """ This function turns pandas dataframe to CSV and saves
     to DOWNLOAD_FOLDER"""
     for file in os.listdir(UPLOAD_FOLDER):
-        file_to_csv= file.to_csv(os.path.join(DOWNLOAD_FOLDER,r'results.csv'),
+        process_file()
+        file_to_csv= file.to_csv(os.path.join(DOWNLOAD_FOLDER, r'results.csv'),
                                  sep='\t', encoding='utf-8')
         return file_to_csv
         
@@ -72,7 +74,11 @@ def actual_analysis():
                'fold_change', 'p-value', 'percentage_difference (%)', 'controlCV', 'treatedCV']]
 
     sort = df2.sort_values(['percentage_difference (%)'], ascending=True)
+    
     test = sort.iloc[0:10:]
+
+    file_to_csv= sort.to_csv(os.path.join(DOWNLOAD_FOLDER, r'results.csv'),
+                                 sep='\t', encoding='utf-8')
     return test
 
 def create_fancybargraph(objectfromanalysis):
@@ -91,6 +97,7 @@ def create_fancybargraph(objectfromanalysis):
 
     my_file = ax.get_figure()
     my_file.savefig(os.path.join((STATIC_FOLDER), 'my_file.png'))
+    my_file.savefig(os.path.join((DOWNLOAD_FOLDER),"my_file.png"))
     ourprecious = 'my_file.png'
     return ourprecious
 
@@ -103,5 +110,7 @@ def delete_foldercontent():
     try:
         if os.path.isfile(file_path):
             os.unlink(file_path)
+
+        
     except Exception as e_ception:
         print(e_ception)
