@@ -1,18 +1,38 @@
-
 <!DOCTYPE html>
-
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <html lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<html>
-<div class="topnav">
-<a href = "https://kellerman-db.herokuapp.com/"> Home</a>
-<a href="{{ url_for('kinase.index') }}">Kinase</a>
-<a href="{{ url_for('inhibitor.index') }}">Inhibitors</a>
-<a href="{{ url_for('analysis.index') }}">Analysis</a>
-</div>
+<head>
+  <title>Kellerman Kinase</title>
+  <!-- accept character set and fit application to different size screens -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- link bootstraps style sheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
 
-{% block content %}{% endblock %}
+<!-- Split page into 3 coloums -->
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
 </div>
+<body>
+<!-- top nav bar -->
+<div class="container">
+    <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="100">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{url_for('index') }}">Kellerman Kinase | Home</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('kinase.index') }}">Kinase</a></li>    
+            <li><a href="{{ url_for('inhibitor.index') }}">Inhibitors</a></li>
+            <li><a href="{{ url_for('analysis.index') }}">Analysis</a></li>
+        </ul>
+        </nav>
+    </nav>
+</div>
+{% block content %} {% endblock %}
 
+</body>
+</html>
