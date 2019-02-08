@@ -1,30 +1,23 @@
 {% extends "menu.html" %}
 {% block content %}
 
-<div class="content">
+<div class="container" align="center">
 
-<h1> This is the page where we show the results </h1>
+<h1> Your Results! </h1>
 <p> Here is your file result: 
         {% for table in tables %}
         {{ table|safe }}
     </p>
 
-
-
     <img src="{{url_for('static', filename=ourprecious)}}" alt="Your results can't be displayed. Bad luck">
 
     {% endfor %}
 
-<p>
-Please click on the button below to save your full results to your computer
+<p> Please click on the button below to save your full results to your computer </p>
 
-</p>
 <form method="GET" action= {{url_for('analysis.saveresults') }} >
-<button type="submit" style="background-color:rgb(34, 146, 34);color:white"  name= "Download" class="btn btn-primary btn-lg">Download Files</button>
+<button type="submit" name= "Download" class="btn btn-success btn-lg">Download Files</button>
 </form>
-<p>
-
-</p>
 </div>
 
 {% endblock %}

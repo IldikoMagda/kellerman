@@ -1,28 +1,28 @@
 {% extends "menu.html" %}
-
-
 {% block content %}
-
-<form name="files" action= {{ url_for('analysis.upload') }} method="POST" enctype="multipart/form-data">
+<div class="container" align="center">
+	
+<form name="file" action= {{ url_for('analysis.upload') }} method="POST" enctype="multipart/form-data">
 	<!-- COMPONENT START -->
 	<div class="form">
-      <label for="exampleFormControlFile1">Proteomics File browser</label>
-
+      <label for="exampleFormControlFile1"><h1>Proteomics File browser</h1></label>
 
 		<div class="input-group input-file" name="file">
     		<input type="file" name="file" class="form-control" accept=".tsv" multiple/>			
-            <span class="input-group-btn">
+            <span class="input-group-btn" >
         
     		</span>
 
 		</div>
 	</div>
 	<!-- COMPONENT END -->
-	<div class="form-group">
-		<button type="submit" name="file" value="file" class="btn btn-primary pull-right">Submit</button>
-		<button type="reset" class="btn btn-danger">Reset</button>
+	<div class="form-group btn-group">
+		
+		<button type="submit" name="file" value="file" class="btn btn-primary">GO!</button>
+		<button type="reset" class="btn btn-danger pull-right">Reset</button>
 	</div>
 </form>
+</div>
 </div>
 </div>
 
