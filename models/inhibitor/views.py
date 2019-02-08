@@ -1,9 +1,7 @@
 # import flask, blueprint, render template, request, url and redirect from flask
 from flask import Flask, Blueprint, render_template, request,  url_for, redirect
-import sys
 # import database from common file 
 import common.database as db
-import json
 
 # name inhibitor blueprint route 
 inhibitor_blueprint= Blueprint('inhibitor', __name__)
@@ -11,8 +9,13 @@ inhibitor_blueprint= Blueprint('inhibitor', __name__)
 def index():      
     if request.method == 'POST':
         if request.form['name']:
+
             # give a variable for user input 
             nameFilter = request.form['name']
+
+            # make nameFilter uppercase to match names in database 
+            nameFilter = nameFilter.upper()
+
         return redirect(url_for('inhibitor.results', nameFilter=nameFilter))
     return render_template('inhibitor/index.html')
 
@@ -26,3 +29,6 @@ def results(nameFilter):
     return render_template('inhibitor/results.html', data=data) 
     # except:
     #     return "Sorry! No information available for that kinase!"
+
+
+
