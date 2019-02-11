@@ -139,7 +139,7 @@ def actual_analysis():
     #open file and read with pandas with delimiter
     #rdf = pd.read_csv((process_file()), delim_whitespace=True)
 
-    rdf = pd.read_csv(input_file, sep="\t")     
+    rdf = pd.read_csv(input_file, delim_whitespace=True)     
     nrdf = rdf.iloc[:,0:4]
     new = nrdf.replace(0, np.nan)
     new = new.dropna(how='all')
