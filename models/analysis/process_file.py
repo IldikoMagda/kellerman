@@ -62,7 +62,7 @@ def actual_analysis():
     # basically cleaning the raw data to make it easier to use
     with process_file() as data:           # this might not work as double opening
         data = csv.reader(data, delimiter='\t')
-        next(data)
+        next(data, None)
         for row in data:
             counter = counter + 1
             data = row[0:6]
