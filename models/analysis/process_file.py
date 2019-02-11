@@ -13,7 +13,7 @@ import numpy as np
 import math
 from rq import Queue
 from worker import conn
-
+q = Queue(connection=conn)
 
 import config
 
@@ -206,28 +206,33 @@ def create_fancybargraph(objectfromanalysis):
     """ this function uses matplotlib to create a graphical presentation about the uploaded file"""
 
     __author__="Connor"    
-
+    funny_loop = True
     #putting values into a bar graph
+    if funny_loop:
+        results = q.enqueue_call(process_file, 'http://heroku.com', timeout='1h')
+        if results != None:
+            ax = results.plot.bar(x = "Kinase", rot=0, figsize=(7,3.5))
+            # adjusting figure size
+            plt.subplots_adjust(bottom=0.35, left=0.35)
+            # setting title
+            ax.set_title('Top Ten Downregulated Kinases')
+            # removing figure legend
+            ax.get_legend().remove()
+            # setting y-label
+            ax.set_ylabel('z-score')
+            # adjusting x-axis labels to be more visible
+            plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
+            # converts into figure
+            fig = ax.get_figure()
+            # saves figure
 
-    ax = objectfromanalysis.enqueue_call.plot.bar(x = "Kinase", rot=0, figsize=(7,3.5))
-    # adjusting figure size
-    plt.subplots_adjust(bottom=0.35, left=0.35)
-    # setting title
-    ax.set_title('Top Ten Downregulated Kinases')
-    # removing figure legend
-    ax.get_legend().remove()
-    # setting y-label
-    ax.set_ylabel('z-score')
-    # adjusting x-axis labels to be more visible
-    plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
-    # converts into figure
-    fig = ax.get_figure()
-    # saves figure
-   
-    fig.savefig(os.path.join((STATIC_FOLDER), 'top_ten.png'))
-    fig.savefig(os.path.join((DOWNLOAD_FOLDER),'top_ten.png'))
-    ourprecious = 'top_ten.png'
-    return ourprecious
+            fig.savefig(os.path.join((STATIC_FOLDER), 'top_ten.png'))
+            fig.savefig(os.path.join((DOWNLOAD_FOLDER),'top_ten.png'))
+            ourprecious = 'top_ten.png'
+            funny_loop == False
+            return ourprecious
+    else: 
+        funny_loop == True
 
 def delete_foldercontent():
     """This function might be able to delete data from our upload folder"""
