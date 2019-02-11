@@ -54,11 +54,12 @@ def uploaded():
     """This function maybe runs the analysis """
     # take the file and analise
     result_object = q.enqueue(process_file.actual_analysis, 'http://heroku.com')
+    result = result_object.result
     #create our precious picture
     ourprecious = process_file.create_fancybargraph(result_object)
 
     return render_template("analysis/results.html",
-                           tables=[result_object.to_html(classes='data', header="true")],
+                           tables=[result.to_html(classes='data', header="true")],
                            ourprecious=ourprecious)
 
 @analysis_blueprint.route('/dowload_all', methods=['GET', 'POST'])
