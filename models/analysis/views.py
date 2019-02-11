@@ -1,7 +1,8 @@
 
 """This file is to run the essential functions of the analysis site """
 import os
-from flask import Blueprint, render_template, request, url_for, redirect, send_from_directory
+import zipfile
+from flask import Blueprint, render_template, request, url_for, redirect, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 import config
 from models.analysis import process_file
@@ -14,7 +15,7 @@ __author__ = "Ildiko"
 analysis_blueprint = Blueprint('analysis', __name__) #bluprint to wrap up the code
 
 #contains abs path to uploaded file
-UPLOAD_FOLDER = config.UPLOAD_FOLDER 
+UPLOAD_FOLDER = config.UPLOAD_FOLDER
 #the folder where the results can be saved-the full csv
 DOWNLOAD_FOLDER = config.DOWNLOAD_FOLDER
 
@@ -34,7 +35,7 @@ def upload():
     """This function uploads the file to uploads folder """
     if request.method == 'POST':
         uploadedfile = None
-        file = request.files['file']        
+        file = request.files['file'] 
         # if file sent save it to upload_folder and redirect to analysis:
         for file in request.files.getlist('file'):
             uploadedfile = secure_filename(file.filename)
@@ -47,11 +48,6 @@ def uploaded():
     """This function maybe runs the analysis """
     # take the file and analise
     result_object = process_file.actual_analysis()
-    #create csv in dowload folder
-    #process_file.create_csv(result_object)
-
-    #delete the files in the upload folder
-    #process_file.delete_foldercontent()
     #create our precious picture
     ourprecious = process_file.create_fancybargraph(result_object)
 
@@ -59,15 +55,16 @@ def uploaded():
                            tables=[result_object.to_html(classes='data', header="true")],
                            ourprecious=ourprecious)
 
-@analysis_blueprint.route('saveresults/', methods=['GET', 'POST'])
-def saveresults():
+@analysis_blueprint.route('/dowload_all', methods=['GET', 'POST'])
+def download_all():
     """This is the function which dowloads the results for the user"""
-    #if request.method=='GET':
-    folder = DOWNLOAD_FOLDER
-    for eachfile in os.listdir(folder):
-        process_file.process_file()
-        if eachfile is not None:
-            return send_from_directory(folder, eachfile, as_attachment=True)
-        else:
-            return redirect (url_for('analysis.index'))
-#and os.path.isfile(eachfile)
+
+    zipf = zipfile.ZipFile('Results.zip','w', zipfile.ZIP_DEFLATED)
+    for root, dirs, files in os.walk('downloads/'):
+        for file in files:
+            zipf.write('downloads/'+file)
+    zipf.close()
+    return send_file('Results.zip',
+            mimetype = 'zip',
+            attachment_filename= 'Results.zip',
+            as_attachment = True)
