@@ -9,6 +9,7 @@ from models.analysis import process_file
 import matplotlib as mat
 mat.use('agg')
 import matplotlib.pyplot as plt
+import time
 
 from rq import Queue
 from worker import conn
@@ -54,14 +55,19 @@ def upload():
 def uploaded():
     """This function maybe runs the analysis """
     # take the file and analise
-    result_object = q.enqueue_call(process_file.actual_analysis, args=None, timeout='1h' )
-    result = result_object.result
-    #create our precious picture
-    ourprecious = process_file.create_fancybargraph(result_object)
+    result = None
+    if result == None:
+        result_object = q.enqueue_call(process_file.actual_analysis, args=None, timeout='1h' )
+        result = result_object.result
+        time.sleep(350)
 
-    return render_template("analysis/results.html",
-                           tables=[result.to_html(classes='data', header="true")],
-                           ourprecious=ourprecious)
+
+    else:
+    #create our precious picture
+        ourprecious = process_file.create_fancybargraph(result)
+        return render_template("analysis/results.html",
+                                tables=[result.to_html(classes='data', header="true")],
+                                ourprecious=ourprecious)
 
 @analysis_blueprint.route('/dowload_all', methods=['GET', 'POST'])
 def download_all():
