@@ -127,7 +127,7 @@ def actual_analysis():
     # taking the mean value
     newdict = {}
 
-    for key, value in total.iteritems():
+    for key, value in total.items():
         s = sum(value)/len(value)
         newdict[key] = s 
 
