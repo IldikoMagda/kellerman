@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 
 from rq import Queue
 from worker import conn
+from redis import Redis
 
 q = Queue(connection=conn)
 
@@ -53,7 +54,7 @@ def upload():
 def uploaded():
     """This function maybe runs the analysis """
     # take the file and analise
-    result_object = q.enqueue(process_file.actual_analysis, 'http://heroku.com')
+    result_object = q.enqueue_call(process_file.actual_analysis, args=None, timeout='1h' )
     result = result_object.result
     #create our precious picture
     ourprecious = process_file.create_fancybargraph(result_object)
