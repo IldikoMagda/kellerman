@@ -11,6 +11,9 @@ import psycopg2 as pg
 import pandas.io.sql as psql
 import numpy as np
 import math
+from rq import Queue
+from worker import conn
+
 
 import config
 
@@ -42,7 +45,9 @@ def create_csv(dataframeobject):
 def actual_analysis():
     """ this is where the analysis of the uploaded tsv file run"""
 
-    __author__ = "Connor"
+    __author__ = "Connor and Ildiko "
+    # let's try to send this entire function to a background process
+
 
     # setting input file as a variable to be easily used across the script
     input_file =process_file()
@@ -202,9 +207,9 @@ def create_fancybargraph(objectfromanalysis):
 
     __author__="Connor"    
 
-    # putting values into a bar graph
+    #putting values into a bar graph
 
-    ax = objectfromanalysis.plot.bar(x = "Kinase", rot=0, figsize=(7,3.5))
+    ax = objectfromanalysis.enqueue_call.plot.bar(x = "Kinase", rot=0, figsize=(7,3.5))
     # adjusting figure size
     plt.subplots_adjust(bottom=0.35, left=0.35)
     # setting title

@@ -10,6 +10,12 @@ import matplotlib as mat
 mat.use('agg')
 import matplotlib.pyplot as plt
 
+from rq import Queue
+from worker import conn
+
+q = Queue(connection=conn)
+
+
 __author__ = "Ildiko"
 
 analysis_blueprint = Blueprint('analysis', __name__) #bluprint to wrap up the code
@@ -47,7 +53,7 @@ def upload():
 def uploaded():
     """This function maybe runs the analysis """
     # take the file and analise
-    result_object = process_file.actual_analysis()
+    result_object = q.enqueue(process_file.actual_analysis, 'http://heroku.com')
     #create our precious picture
     ourprecious = process_file.create_fancybargraph(result_object)
 
