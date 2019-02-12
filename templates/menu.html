@@ -5,13 +5,14 @@
   <!-- accept character set and fit application to different size screens -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- link bootstraps style sheets -->
+  <!-- link bootstraps and custom style sheets -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css2/style.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
-<!-- Split page into 3 coloums -->
+<!-- Split pages into 3 coloums -->
 <div class="row">
     <div class="col-sm-4"></div>
     <div class="col-sm-4"></div>
@@ -19,11 +20,10 @@
 </div>
 <body>
 <!-- top nav bar -->
-<div class="container">
-    <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="100">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{url_for('index') }}">Kellerman Kinase | Home</a>
-        </div>
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse">
+        <div class="nav navbar-header">
+            <a class="navbar-brand" href="{{url_for('index') }}">Kellerman Kinase </a>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{ url_for('kinase.index') }}">Kinase</a></li>    
             <li><a href="{{ url_for('inhibitor.index') }}">Inhibitors</a></li>
