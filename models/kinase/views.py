@@ -26,7 +26,7 @@ def results(nameFilter):
     #query = db.Query(query)
     #if nameFilter in query:
         # set kinase query 
-    query =  'SELECT * FROM public."Kinase_table" WHERE "CAP_KINASE_NAME" LIKE \'' "%" + nameFilter +  "%" '\''
+    query =  'SELECT * FROM public."Kinase_table" WHERE "CAP_KINASE_NAME" LIKE \'' "%" + nameFilter +  "%" '\' OR "SYNONYMS" LIKE  \'' "%" + nameFilter +  "%" '\''
     # gather data from database 
     data = db.Query(query)
     # set query for inhibitor nae 
