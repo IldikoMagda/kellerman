@@ -1,7 +1,8 @@
 Flask
-psycopg2
+psycopg2-binary
 Flask-SQLAlchemy
 pandas
 matplotlib==2.2.3
 numpy
 SQLAlchemy
+rq
