@@ -33,10 +33,10 @@ def results(nameFilter):
     inhibitor = 'SELECT "INHIBITOR_NAME" FROM public."KiInh_relation_table" WHERE "KINASE_NAME" LIKE \'' "%" + nameFilter +  "%" '\''
     data2 = db.Inhibitor(inhibitor)
     # set query for phosphosites on target genes
-    phosphosite = 'SELECT * FROM public."Phosphosite_table" WHERE "KINASE_NAME" LIKE \''"%" + nameFilter +  "%" '\''
+    phosphosite = 'SELECT * FROM public."Phosphosite_table" WHERE "KINASE_NAME" LIKE \''"%" + nameFilter +  "%" '\' OR "SYNONYMS" LIKE  \'' "%" + nameFilter +  "%" '\''
     data3 = db.Phospho(phosphosite)
     # set query for phosphosites on selected kinase
-    phosphosite = 'SELECT * FROM public."Phosphosite_table" WHERE "GENE_NAME" LIKE \''"%" + nameFilter +  "%" '\''
+    phosphosite = 'SELECT * FROM public."Phosphosite_table" WHERE "GENE_NAME" LIKE \''"%" + nameFilter +  "%" '\' OR "SYNONYMS" LIKE  \'' "%" + nameFilter +  "%" '\''
     data4 = db.Phospho(phosphosite)
     return render_template('kinase/results.html', data=data, data2=data2, data3=data3, data4=data4) 
     #except:
