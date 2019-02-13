@@ -1,60 +1,39 @@
 {% extends "menu.html" %}
 
-{% block content %}
+{% block content  %}
 
-/* * {
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-} */
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* Style the top navigation bar */
-.topnav {
-  overflow: hidden;
-  background-color: #011638
-}
-/* Style the topnav links */
-.topnav a {
-  float: left;
-  display: block;
-  color: aliceblue;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  background-color: #011638;
-
-}
 /* Change color on hover */
-.topnav a:hover {
-  background-color: #011638;
-  color: #f2f2f2;
+.nav a:hover {
   font-weight: bold;
 }
-/* Style the content */
-.content {
-  padding: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
-  text-align: left;
-  color: #011638;
+
+/* Set style from jumbotron on homepage */
+.jumbotron {
+  background-image: linear-gradient(to bottom right, #C0D4C9, #318894); fixed;
+  text-align: center;
+  color:white;
 }
+/* Set style for header 4*/
+h4 { 
+  display: block;
+  font-size: 1em;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
 /* Style the footer */
 .footer {
   padding: 5px;
   font-size: 12px;
   background-color: aliceblue;
 }
-/* Style for Scrollbox */
-.id1 {
-  border-bottom: 1px solid aliceblue; 
-  border-collapse: collapse; 
-  padding: 15px;
+
+/* set style for homepage symbols */
+.glyphicon {
+  font-size: 40px;
 }
-
-
-
 {% endblock %}
 

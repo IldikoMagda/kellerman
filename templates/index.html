@@ -1,13 +1,28 @@
 {% extends "menu.html" %} {% block content %}
 <title>Home</title>
-<div class="container">
-  <div class="jumbotron text-center well">
+<!-- Set jumbotron for homepage -->
+<div class="container" align="center">
+  <div class="jumbotron text-center well background:#27A967;color: white;">
     <h1>Kellerman Kinase Database</h1> 
-      <p>Kellerman Kinase is a searable, extensive database including genomic and inhibitor information. </p> 
+      <p>Kellerman Kinase is a searable, extensive database including all known human kinases. </p> 
   </div>
-  <p> Explore our kianse database on the within the kinase page and inhibitor page. Upload your 
-           TSV file on pur analysis age to retrieve relative kianse activiy. </p> 
-  <p class="text-info">This text represents some information.</p>   
-</div>
+  <!-- Apply bootsraps grid and glyphicon symbols -->
+  <div class="row">
+      <div class="col-sm-6">
+        <span class="glyphicon glyphicon-search"></span> 
+          <p> Search our <a href="{{ url_for('kinase.index') }}">kinase </a>
+            and <a href="{{ url_for('inhibitor.index') }}">inhibitor</a> database 
+            to find rescources for our research. Our database covers general and 
+            phosopsihte information on all known kinases and their related inhibitors.
+          </p> 
+      </div>
+          <div class="col-sm-6">
+              <span class="glyphicon glyphicon-upload"></span>
+              <span class="glyphicon glyphicon-download"></span>
+          <p>Upload your phosphoporteomics data on our <a href="{{ url_for('analysis.index') }}">analysis</a> page and download your results file.
+            Our database will calculate the pecentage foldchange of your data. 
+          </p>   
+        </div>
+  </div>
 
 {% endblock %}

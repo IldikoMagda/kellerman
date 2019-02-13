@@ -1,11 +1,9 @@
-{% extends "menu.html" %}
-
-
-{% block content %}
-<div class="content">
+{% extends "menu.html" %} {% block content %}
 <title>Inhibitors Results</title>
-{% for item in data %}
+<div class="container">
 
+<!-- Start for loop for inhibitor data variable -->
+{% for item in data %}
 <h2>{{item[0]}}</h2>
 <table>
     <tr>
