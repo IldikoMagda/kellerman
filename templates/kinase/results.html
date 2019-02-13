@@ -1,64 +1,64 @@
-
-{% extends "menu.html" %}
-{% block content %}
+{% extends "menu.html" %} {% block content %}
 <div class="container">
 <title> Kinase Results </title>
-
+<!-- Loop through kinase data -->
 {% for item in data %}
 <b><h1 align="center">{{item[2]}}</h1> </b>
-
+<!-- Apply bootstraps -->
 <div class="row">
   <div class="col-sm-4">
-<h4>General Information</h4>
-<p>Group : {{item[4]}}</p>
-<p>Family : {{item[5]}}</p> 
-<p>Subfamily : {{item[6]}}</p>
-<p>Chromosome : {{item[11]}}</p>
-<p>Subcellular location : {{item[12]}}</p>
+    <h4>General Information</h4>
+    <p>Group : {{item[4]}}</p>
+    <p>Family : {{item[5]}}</p> 
+    <p>Subfamily : {{item[6]}}</p>
+    <p>Chromosome : {{item[11]}}</p>
+    <p>Subcellular location : {{item[12]}}</p>
+  </div>
+  <div class="col-sm-4">
+    <h4>Identities</h4>
+    <p>Accession Number : {{item[1]}}</p> 
+    <p>Entrez ID : {{item[9]}} </p>
+    <p>Uniprot ID : {{item[3]}} </p>
+  </div>
+  <div class="col-sm-4">
+    <h4>Known {{item[2]}} Inhibitors</h4>
+        <!-- Creat scrollbox for inhibitor list -->
+        <div style="width: 333px; height: 180px; overflow:auto;">
+        <!-- Loop through data from inhibitor relational table and make a list -->
+        {% for item in data2 %}
+        <ul><li><a href="{{ url_for('kinase.inhib_info') }}">{{item[0]}}</a></li></ul>
+        {% endfor %}
+        </div>
+  </div>
 </div>
-<div class="col-sm-4">
-<h4>Identities</h4>
-<p>Accession Number : {{item[1]}}</p> </td>
-<p>Entrez ID : {{item[9]}} </p>
-<p>Uniprot ID : {{item[3]}} </p>
-</div>
-<div class="col-sm-4">
-<h4>Known {{item[2]}} Inhibitors</h4>
-<div style="width: 333px; height: 180px; overflow:auto;">
-{% for item in data2 %}
-<ul><li><a href="{{ url_for('kinase.inhib_info') }}">{{item[0]}}</a></li></ul>
-{% endfor %}
-</div>
-</div>
-</div>
+<!-- Set phosphosite heading -->
 <div class = "row" >
-<div class="col-sm-12">
-{% for item in data %}
-<h2 align="center">Phosphosites</h2>
-{% endfor %}
+  <div class="col-sm-12">
+    <h2 align="center">Phosphosites</h2>
 </div></div>
 <div class = "row" >
-<div class="col-sm-4">
-<h4>Genmoic Location</h4>
-<div style="width: 333px; height: 180px; overflow:auto;">
-<table>
-  <th>Phosophosite</th>
-  <th> by Kinase</th>
-    {% for item in data4 %}
-    <tr style="border-bottom: 1px solid #ddd; border-collapse: collapse; padding: 15px;">
-      <td> {{item[6]}}</td>
-      <td> {{item[7]}}</td>
-    </tr>
-    {% endfor %}
-</table>
-</div>
-</div>
+  <div class="col-sm-4">
+    <!-- Create table for phosphosite data and apply scrollbox -->
+    <h4>Genmoic Location</h4>
+      <div style="width: 333px; height: 180px; overflow:auto;">
+        <table>
+        <th>Phosophosite</th>
+        <th> by Kinase</th>
+            {% for item in data4 %}
+            <tr style="border-bottom: 1px solid #ddd; border-collapse: collapse; padding: 15px;">
+            <td> {{item[6]}}</td>
+            <td> {{item[7]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+  </div>
 <div class="col-sm-4">
     <h4>Neighbouring Sequences</h4>
-    <p>Protein Sequence: <div style="width: 110px; height: 50px; overflow: auto;"> {{item[7]}}</div> </p>
-    <p>Domain Sequece: <div style="width: 110px; height: 50px; overflow: auto;"> {{item[8]}}</div></p>
-    {% endfor %}
-    </div>
+        <p>Protein Sequence: <div style="width: 110px; height: 50px; overflow: auto;"> {{item[7]}}</div> </p>
+        <p>Domain Sequece: <div style="width: 110px; height: 50px; overflow: auto;"> {{item[8]}}</div></p>
+        {% endfor %}
+</div>
 <div class="col-sm-4">
   <h4>Target proteins</h4>
   <div style="width: 333px; height: 180px; overflow:auto;">
