@@ -11,6 +11,7 @@
 .jumbotron {
   background-image: linear-gradient(to bottom right, #C0D4C9, #318894); fixed;
   text-align: center;
+  color:white;
 }
 /* Set style for header 4*/
 h4 { 
