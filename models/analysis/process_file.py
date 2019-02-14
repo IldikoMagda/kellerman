@@ -52,7 +52,7 @@ def actual_analysis():
 
     for file in  os.listdir(UPLOAD_FOLDER):
         data = open(pathjoin(UPLOAD_FOLDER, file), 'r')
-        data = csv.reader(data, delimiter='\t')
+        data = list(csv.reader(data, delimiter='\t'))
         next(data, None)
         for row in data:
             data = row[0:6]
