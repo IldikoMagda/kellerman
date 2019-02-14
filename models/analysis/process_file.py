@@ -1,18 +1,17 @@
 
 """ This file will process the uploaded file. Take it, open it, analise it """
 import os
-
-import pandas as pd
 import csv
+import pandas as pd
+import psycopg2 as pg
+import config
 import matplotlib as mat
 mat.use('agg')
 import matplotlib.pyplot as plt
-import psycopg2 as pg
 
 import numpy as np
 import math
 
-import config
 
 #the folder where you find the uploaded files
 UPLOAD_FOLDER = config.UPLOAD_FOLDER
@@ -31,7 +30,7 @@ def process_file():
 
 
 def create_csv(dataframeobject):
-    """ This function turns pandas dataframe to CSV and saves
+    """ This function turns a file to CSV and saves
     to DOWNLOAD_FOLDER"""
     for file in os.listdir(UPLOAD_FOLDER):
         process_file()
@@ -64,8 +63,8 @@ def actual_analysis():
             fc = data[3]
         else:
             pass
-        if "_" in name: 
-            name = name.split("_")[0]  
+        if "_" in name:
+            name = name.split("_")[0]
         if residue != "None":
             if residue != "inf":
                 names.append(name)
@@ -74,30 +73,23 @@ def actual_analysis():
 
         # putting into pandas df
         df2 = pd.DataFrame()
+        df2 = pd.DataFrame(columns=['gene', 'residue', 'fold_change'])
         df2["gene"] = names
         df2["residue"] = residuelist
-        df2["fold_change"] = fclist      
+        df2["fold_change"] = fclist
 
         genename = names
         location = residuelist
 
-        connection = pg.connect("dbname=d71uh4v1fd2hq user=tdsneouerzmxkj \
-        password=92a500cb091fe70168b32c66fa6a3d6c376d467d57fb9b663eb5d13446ecb2e6 \
-        host=ec2-54-75-245-94.eu-west-1.compute.amazonaws.com")
+        conn_string = ("host='ec2-54-75-245-94.eu-west-1.compute.amazonaws.com' dbname='d71uh4v1fd2hq' user='tdsneouerzmxkj' password='92a500cb091fe70168b32c66fa6a3d6c376d467d57fb9b663eb5d13446ecb2e6'")
+        conn = pg.connect(conn_string)
+        cur = conn.cursor()
+        query =('SELECT "KINASE_NAME", "GENE_NAME", "RESIDUE" FROM public."Phosphosite_table" WHERE "GENE_NAME" LIKE any(%s) and "RESIDUE" LIKE any(%s)',\
+                str((genename, location)))
 
-        cur = connection.cursor()
-
-        result = cur.execute('SELECT "KINASE_NAME", "GENE_NAME", "RESIDUE" FROM public."Phosphosite_table" WHERE "GENE_NAME" LIKE any(%s) and "RESIDUE" LIKE any(%s)',\
-                (genename, location))
-
-        df = pd.DataFrame(columns=['kinase','gene','residue'])
-        df = pd.DataFrame(cur.fetchall())
-        #df.columns = ['kinase', 'gene', 'residue']
-
-        connection.close()
-
-        result = pd.merge(df, df2, on = ('gene','residue'), how = "left")
-
+        df = pd.read_sql(query, con= pg.connect(conn_string), params={'name':'value'})
+        conn.close()
+        result = pd.merge(df, df2, left_on=('gene','residue'))
         result['fold_change'].dropna()
         d = result.replace("inf", np.nan)
         e = d.replace("0", np.nan)
@@ -129,12 +121,11 @@ def actual_analysis():
                     total[kinase] = [log2fc]
 
         newdict = {}
-
         for key, value in total.iteritems():
             s = sum(value)/len(value)
-            newdict[key] = s 
+            newdict[key] = s
 
-        rdf = pd.read_csv(data, sep="\t")     
+        rdf = pd.read_csv(data, sep="\t")    
         nrdf = rdf.iloc[:,0:4]
         new = nrdf.replace(0, np.nan)
         new = new.dropna(how='all')
@@ -188,14 +179,13 @@ def actual_analysis():
         organised.to_csv(os.path.join(DOWNLOAD_FOLDER, r'total_list.csv'),
                                         sep='\t', encoding='utf-8')
         top10.to_csv(os.path.join(DOWNLOAD_FOLDER, r'topten_list.csv'),
-                                        sep='\t', encoding='utf-8')
+                                        sep='\t', encoding='utf-8')        
         return top10
 
 def create_fancybargraph(objectfromanalysis):
     """ this function uses matplotlib to create a graphical presentation about the uploaded file"""
 
     __author__="Connor"
-
 
     ax = objectfromanalysis.plot.bar(x= "Kinase", rot=0, figsize=(7,3.5))
     # adjusting figure size
@@ -211,7 +201,6 @@ def create_fancybargraph(objectfromanalysis):
     # converts into figure
     fig = ax.get_figure()
     # saves figure
-
     fig.savefig(os.path.join((STATIC_FOLDER), 'top_ten.png'))
     fig.savefig(os.path.join((DOWNLOAD_FOLDER),'top_ten.png'))
     ourprecious = 'top_ten.png'
@@ -220,14 +209,11 @@ def create_fancybargraph(objectfromanalysis):
 
 def delete_foldercontent():
     """This function might be able to delete data from our upload folder"""
-    folder = UPLOAD_FOLDER
-
+    folder = UPLOAD_FOLDER  # delete folder content, later can be more general for all the folders
     for the_file in os.listdir(folder):
         file_path = os.path.join(folder, the_file)
     try:
         if os.path.isfile(file_path):
             os.unlink(file_path)
-
-        
     except Exception as e_ception:
         print(e_ception)
